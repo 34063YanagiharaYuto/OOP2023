@@ -16,7 +16,7 @@ namespace WindowsFormsApp1 {
 
       
         private void btButton_Click(object sender, EventArgs e) {
-            // tbNum1.Text = "楽しいC＃";
+
             this.BackColor = Color.LightSteelBlue;
             btButton.BackColor = Color.Red;
             //tbAnswer.Text = (int.Parse(tbNum1.Text) + int.Parse(tbNum2.Text)).ToString();
