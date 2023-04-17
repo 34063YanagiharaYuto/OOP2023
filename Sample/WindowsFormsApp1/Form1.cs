@@ -27,6 +27,18 @@ namespace WindowsFormsApp1 {
 
         }
 
+        // イベントハンドラ
+        private void btPow_Click(object sender, EventArgs e) {
+            int num01 = (int)nmdX.Value;
+            int num02 = (int)nmdY.Value;
+            int sum = 1; // 初期値を1にする(0にしてしまうと掛け算で0になるから)
+            for (int i = 0; i < num02; i++) // num01がnum02乗分繰り返す
+            {
+                sum = sum * num01;
+            }
+            tbResult.Text = sum.ToString();
+        }
+
     }
     /* プログラム作成
      * ↓
