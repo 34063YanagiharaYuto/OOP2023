@@ -31,15 +31,15 @@ namespace WindowsFormsApp1 {
             this.tbNum2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.nmdY = new System.Windows.Forms.NumericUpDown();
-            this.nmdX = new System.Windows.Forms.NumericUpDown();
+            this.nudY = new System.Windows.Forms.NumericUpDown();
+            this.nudX = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.tbResult = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btPow = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.nmdY)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nmdX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudY)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudX)).BeginInit();
             this.SuspendLayout();
             // 
             // btButton
@@ -97,21 +97,21 @@ namespace WindowsFormsApp1 {
             this.label2.TabIndex = 2;
             this.label2.Text = "=";
             // 
-            // nmdY
+            // nudY
             // 
-            this.nmdY.Font = new System.Drawing.Font("MS UI Gothic", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.nmdY.Location = new System.Drawing.Point(218, 224);
-            this.nmdY.Name = "nmdY";
-            this.nmdY.Size = new System.Drawing.Size(120, 42);
-            this.nmdY.TabIndex = 3;
+            this.nudY.Font = new System.Drawing.Font("MS UI Gothic", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.nudY.Location = new System.Drawing.Point(218, 224);
+            this.nudY.Name = "nudY";
+            this.nudY.Size = new System.Drawing.Size(120, 42);
+            this.nudY.TabIndex = 3;
             // 
-            // nmdX
+            // nudX
             // 
-            this.nmdX.Font = new System.Drawing.Font("MS UI Gothic", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.nmdX.Location = new System.Drawing.Point(12, 224);
-            this.nmdX.Name = "nmdX";
-            this.nmdX.Size = new System.Drawing.Size(120, 42);
-            this.nmdX.TabIndex = 3;
+            this.nudX.Font = new System.Drawing.Font("MS UI Gothic", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.nudX.Location = new System.Drawing.Point(12, 224);
+            this.nudX.Name = "nudX";
+            this.nudX.Size = new System.Drawing.Size(120, 42);
+            this.nudX.TabIndex = 3;
             // 
             // label3
             // 
@@ -169,8 +169,8 @@ namespace WindowsFormsApp1 {
             this.BackColor = System.Drawing.Color.PaleGreen;
             this.ClientSize = new System.Drawing.Size(707, 496);
             this.Controls.Add(this.btPow);
-            this.Controls.Add(this.nmdX);
-            this.Controls.Add(this.nmdY);
+            this.Controls.Add(this.nudX);
+            this.Controls.Add(this.nudY);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
@@ -183,8 +183,8 @@ namespace WindowsFormsApp1 {
             this.Controls.Add(this.btButton);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.nmdY)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nmdX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudY)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudX)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,8 +198,8 @@ namespace WindowsFormsApp1 {
         private System.Windows.Forms.TextBox tbNum2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown nmdY;
-        private System.Windows.Forms.NumericUpDown nmdX;
+        private System.Windows.Forms.NumericUpDown nudY;
+        private System.Windows.Forms.NumericUpDown nudX;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbResult;
         private System.Windows.Forms.Label label4;
