@@ -19,12 +19,11 @@ namespace WindowsFormsApp1 {
 
             this.BackColor = Color.LightSteelBlue;
             btButton.BackColor = Color.Red;
-            //tbAnswer.Text = (int.Parse(tbNum1.Text) + int.Parse(tbNum2.Text)).ToString();
+            // tbAnswer.Text = (int.Parse(tbNum1.Text) + int.Parse(tbNum2.Text)).ToString();
             int num1 = int.Parse(tbNum1.Text);
             int num2 = int.Parse(tbNum2.Text);
             int sum = num1 + num2;
             tbAnswer.Text = sum.ToString();
-
         }
 
         // イベントハンドラ
@@ -38,22 +37,26 @@ namespace WindowsFormsApp1 {
             }
             tbResult.Text = sum.ToString();
 
-            /*for文使わない場合
+            /* 
+             * for文使わない場合
              * double.result = Math.Pow((double)nmdX.Value,(double)nmdY.Value);
              * tbResult.Text = result.ToString();
              * 
-             * for文使わない場合　一行でやるとき
+             * for文使わない場合　(一行でやるとき)
              * tbResult.Text = (Math.Pow((double)nmdX.Value,(double)nmdY.Value)).ToString();
              */
         }
 
     }
+
     /* プログラム作成
-     * ↓
-     *ビルド Ctrl + Shift + B　ビルド含め下はCtrl + F5 (F5)
-     *↓
-     *実行ファイル(.exe)
-     *↓ダブルクリック
-     *アプリの実行
+     *  ↓
+     * ビルド Ctrl + Shift + B　ビルド含め下はCtrl + F5 (F5)
+     *  ↓
+     * 実行ファイル(.exe)
+     *  ↓ ダブルクリック
+     * アプリの実行
+     * 
+     * 
      */
 }
