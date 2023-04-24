@@ -13,8 +13,12 @@ namespace BallApp {
         private SoccerBall soccerBall;
         private PictureBox pb;
 
+        private int ballCount = 0;
+
         private List<SoccerBall> balls = new List<SoccerBall>();  // ボールインスタンス 
         private List<PictureBox> pbs = new List<PictureBox>();  // 表示用
+
+        
 
 
         static void Main(string[] args) {
@@ -26,15 +30,12 @@ namespace BallApp {
 
             // this.Width = 1200; // 幅プロパティ(下でSizeを指定してるためしない)
             // this.Height = 800; // 高さプロパティ(下でSizeを指定してるためしない)
-
             this.Size = new Size(800, 600); // (幅, 高さ);
             this.BackColor = Color.Green;
             this.Text = "BallGame";
-            this.MouseClick += Program_MouseClick;   
-
+            this.MouseClick += Program_MouseClick;
             moveTimer = new Timer();
             moveTimer.Interval = 1;  // タイマーのインターバル (ms:ミリ秒)
-            
             moveTimer.Tick += MoveTimer_Tick; // デリゲート登録 (タイマーがこの時間になったら呼ばれる)
 
         }
@@ -51,6 +52,8 @@ namespace BallApp {
 
             balls.Add(soccerBall);
             pbs.Add(pb);
+
+            this.Text = "BallGame" + (++ballCount);
 
             moveTimer.Start();  // タイマースタート
 
