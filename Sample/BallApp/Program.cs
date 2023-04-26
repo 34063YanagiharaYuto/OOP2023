@@ -9,9 +9,12 @@ using System.Windows.Forms;
 namespace BallApp {
     class Program :Form {
 
+        Bar bar; // Barインスタンス格納用
+        PictureBox pbBar; // Bar表示用
+
         private Timer moveTimer;  // タイマー用
-        private PictureBox pb;
        
+        // Listコレクション
         private List<Obj> balls = new List<Obj>();  // ボールインスタンス
         private List<PictureBox> pbs = new List<PictureBox>();  // 表示用
 
@@ -27,11 +30,22 @@ namespace BallApp {
 
             // this.Width = 1200; // 幅プロパティ(下でSizeを指定してるためしない)
             // this.Height = 800; // 高さプロパティ(下でSizeを指定してるためしない)
+
+            // フォーム
             this.Size = new Size(800, 600); // (幅, 高さ);
             this.BackColor = Color.Green;
             this.Text = "BallGame";
             this.MouseClick += Program_MouseClick;
             this.KeyDown += Program_KeyDown;
+
+            // Barインスタンス作成
+            bar = new Bar(700,700);
+            pbBar = new PictureBox();
+            pbBar.Image = bar.Image;
+            pbBar.Location = new Point((int)bar.PosX, (int)bar.PosY);
+            pbBar.Size = new Size(150, 10);
+            pbBar.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbBar.Parent = this;
             
             moveTimer = new Timer();
             moveTimer.Interval = 1;  // タイマーのインターバル (ms:ミリ秒)
@@ -42,7 +56,8 @@ namespace BallApp {
 
         // キーが押された時のイベントハンドラ
         private void Program_KeyDown(object sender, KeyEventArgs e) {
-            
+            bar.Move(e.KeyData);
+            pbBar.Location = new Point((int)bar.PosX, (int)bar.PosY);
         }
 
      
@@ -51,8 +66,8 @@ namespace BallApp {
             // ボールインスタンス生成
             Obj ballObj = null;
 
-            
-            pb = new PictureBox();  // 画像を表示するコントロール
+
+            PictureBox pb = new PictureBox();  // 画像を表示するコントロール
             if (e.Button == MouseButtons.Left)
             {
                 ballObj = new SoccerBall(e.X - 25, e.Y - 25);
@@ -89,7 +104,7 @@ namespace BallApp {
         private void MoveTimer_Tick(object sender, EventArgs e) {
             for (int i = 0; i < balls.Count; i++)
             {
-                balls[i].Move(); // 移動のメッセージを送る
+                balls[i].Move(pbBar,pbs[i]); // 移動のメッセージを送る
                 pbs[i].Location = new Point((int)balls[i].PosX, (int)balls[i].PosY);  //　画像の位置 (double型をint型にキャストする)
             }
            
