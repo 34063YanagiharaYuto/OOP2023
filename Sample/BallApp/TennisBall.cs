@@ -8,6 +8,9 @@ namespace BallApp {
     class TennisBall : Obj {
 
         Random rd = new Random();
+        private static int ballCount = 0;
+
+        public static int BallCount { get => ballCount; set => ballCount = value; }
 
         public TennisBall(double xp, double yp) : base(xp, yp, @"pic\tennis_ball.png") {
 
@@ -16,7 +19,7 @@ namespace BallApp {
 
             int rdY = rd.Next(-15, 25);
             MoveY = (rdY != 0 ? rdY : -1); // 乱数で移動量を設定
-
+            BallCount++;
         }
 
         public override void Move() {

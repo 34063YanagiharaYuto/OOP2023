@@ -10,18 +10,10 @@ namespace BallApp {
     class Program :Form {
 
         private Timer moveTimer;  // タイマー用
-        private SoccerBall soccerBall;
-        private TennisBall tennisBall;
         private PictureBox pb;
-
-        private int ballCount = 0;
-
-        private List<SoccerBall> balls1 = new List<SoccerBall>();  // ボールインスタンス
-        private List<PictureBox> pbs1 = new List<PictureBox>();  // 表示用
-
-        private List<TennisBall> balls2 = new List<TennisBall>();  // ボールインスタンス
-        private List<PictureBox> pbs2 = new List<PictureBox>();  // 表示用
-
+       
+        private List<Obj> balls = new List<Obj>();  // ボールインスタンス
+        private List<PictureBox> pbs = new List<PictureBox>();  // 表示用
 
 
 
@@ -39,6 +31,7 @@ namespace BallApp {
             this.BackColor = Color.Green;
             this.Text = "BallGame";
             this.MouseClick += Program_MouseClick;
+            this.KeyDown += Program_KeyDown;
             
             moveTimer = new Timer();
             moveTimer.Interval = 1;  // タイマーのインターバル (ms:ミリ秒)
@@ -47,61 +40,59 @@ namespace BallApp {
 
         }
 
-        private void Program_MouseDoubleClick(object sender, MouseEventArgs e) {
+        // キーが押された時のイベントハンドラ
+        private void Program_KeyDown(object sender, KeyEventArgs e) {
             
         }
 
+     
         // マウスクリック時のイベントハンドラ
         private void Program_MouseClick(object sender, MouseEventArgs e) {
             // ボールインスタンス生成
+            Obj ballObj = null;
 
+            
+            pb = new PictureBox();  // 画像を表示するコントロール
             if (e.Button == MouseButtons.Left)
             {
-                soccerBall = new SoccerBall(e.X - 25, e.Y - 25);
-                pb = new PictureBox();  // 画像を表示するコントロール
-                pb.Image = soccerBall.Image;
-                pb.Location = new Point((int)soccerBall.PosX, (int)soccerBall.PosY);  //　画像の位置 (double型をint型にキャストする)
+                ballObj = new SoccerBall(e.X - 25, e.Y - 25);
                 pb.Size = new Size(50, 50);  // 画像の表示サイズ
-                pb.SizeMode = PictureBoxSizeMode.StretchImage;　// 画像の表示モード   ※列挙型(PictureBoxSizeMode)
-                pb.Parent = this;
-
-                balls1.Add(soccerBall);
-                pbs1.Add(pb);
-
+                
+                
             }
-            else 
-            { 
-                tennisBall = new TennisBall(e.X - 25, e.Y - 25);
-                pb = new PictureBox();  // 画像を表示するコントロール
-                pb.Image = tennisBall.Image;
-                pb.Location = new Point((int)tennisBall.PosX, (int)tennisBall.PosY);  //　画像の位置 (double型をint型にキャストする)
-                pb.Size = new Size(50, 50);  // 画像の表示サイズ
-                pb.SizeMode = PictureBoxSizeMode.StretchImage;　// 画像の表示モード   ※列挙型(PictureBoxSizeMode)
-                pb.Parent = this;
-
-                balls2.Add(tennisBall);
-                pbs2.Add(pb);
-
+            else if(e.Button == MouseButtons.Right)
+            {
+                ballObj = new TennisBall(e.X - 25, e.Y - 25);
+                pb.Size = new Size(25, 25);  // 画像の表示サイズ
+                
                 
             }
             
-            this.Text = "BallGame" + (++ballCount);
+            
+            pb.Image = ballObj.Image;
+            pb.Location = new Point((int)ballObj.PosX, (int)ballObj.PosY);  //　画像の位置 (double型をint型にキャストする)
+            
+            pb.SizeMode = PictureBoxSizeMode.StretchImage;　// 画像の表示モード   ※列挙型(PictureBoxSizeMode)
+            pb.Parent = this;
+
+            balls.Add(ballObj);
+            pbs.Add(pb);
+
+            this.Text = "BallGame" + "サッカーボール：" + SoccerBall.BallCount + "テニスボール：" + TennisBall.BallCount ;
 
             moveTimer.Start();  // タイマースタート
         }
 
+
+
         // タイマータイムアウト時のイベントハンドラ
         private void MoveTimer_Tick(object sender, EventArgs e) {
-            for (int i = 0; i < balls1.Count; i++)
+            for (int i = 0; i < balls.Count; i++)
             {
-                balls1[i].Move(); // 移動のメッセージを送る
-                pbs1[i].Location = new Point((int)balls1[i].PosX, (int)balls1[i].PosY);  //　画像の位置 (double型をint型にキャストする)
+                balls[i].Move(); // 移動のメッセージを送る
+                pbs[i].Location = new Point((int)balls[i].PosX, (int)balls[i].PosY);  //　画像の位置 (double型をint型にキャストする)
             }
-            for (int i = 0; i < balls2.Count; i++)
-            {
-                balls2[i].Move(); // 移動のメッセージを送る
-                pbs2[i].Location = new Point((int)balls2[i].PosX, (int)balls2[i].PosY);  //　画像の位置 (double型をint型にキャストする)
-            }
+           
         }
 
 
