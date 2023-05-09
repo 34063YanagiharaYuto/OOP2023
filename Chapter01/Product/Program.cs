@@ -8,6 +8,7 @@ namespace ProductSample {
     class Program {
         static void Main(string[] args) {
 
+            // 曜日の配列
             string[] DayOfWeekJp = 
                 { "日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"};
 
@@ -70,8 +71,6 @@ namespace ProductSample {
             // こっちのやり方もある↓
             // Console.WriteLine("あなたが生まれてから今日まで{0}日目です。" + TotalDays.Days);
             #endregion
-
-
 
         }
     }
