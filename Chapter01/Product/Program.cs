@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 namespace ProductSample {
     class Program {
         static void Main(string[] args) {
+
+            string[] DayOfWeekJp = 
+                { "日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"};
+
             #region P26のサンプルプログラム
             //// インスタンス作成
             //Product karinto = new Product(123, "かりんとう", 180);
@@ -28,25 +32,29 @@ namespace ProductSample {
             #endregion
 
             #region 0508演習1
-            // DateTime date = new DateTime(2023, 5, 8);
-            DateTime date = DateTime.Today;
+            //// DateTime date = new DateTime(2023, 5, 8);
+            //DateTime date = DateTime.Today;
 
-            // 10日後を求める
-            DateTime daysAfter10 = date.AddDays(10);
-            DateTime daysBefore10 = date.AddDays(-10);
-            Console.WriteLine("今日の日付：" + DateTime.Today.ToString("yyyy年MM月dd日"));
-            Console.WriteLine("10日前：" + daysAfter10.ToString("yyyy年MM月dd日"));
-            Console.WriteLine("10日前：" + daysBefore10.ToString("yyyy年MM月dd日"));
+            //// 10日後を求める
+            //DateTime daysAfter10 = date.AddDays(10);
+            //DateTime daysBefore10 = date.AddDays(-10);
+            //Console.WriteLine("今日の日付：" + DateTime.Today.ToString("yyyy年MM月dd日"));
+            //Console.WriteLine("10日前：" + daysAfter10.ToString("yyyy年MM月dd日"));
+            //Console.WriteLine("10日前：" + daysBefore10.ToString("yyyy年MM月dd日"));
 
 
-            Console.WriteLine("今日の10日後は、" + daysAfter10.Day + "日です。");
+            //Console.WriteLine("今日の10日後は、" + daysAfter10.Day + "日です。");
             #endregion
 
+            #region 0508演習2
             Console.WriteLine("誕生日を入力");
+            // 西暦の入力
             Console.Write("西暦:");
             int year = int.Parse(Console.ReadLine());
+            // 月の入力
             Console.Write("月:");
             int month = int.Parse(Console.ReadLine());
+            // 日の入力
             Console.Write("日:");
             int day = int.Parse(Console.ReadLine());
 
@@ -56,9 +64,14 @@ namespace ProductSample {
 
             TimeSpan TotalDays = time2 - time1;
 
-            Console.WriteLine("あなたが生まれてから今日まで" + TotalDays.Days + "日目です。");
+            Console.WriteLine("あなたが生まれた曜日は" + DayOfWeekJp[(int)time1.DayOfWeek] + "です。");
 
-            
+            Console.WriteLine("あなたが生まれてから今日まで" + TotalDays.Days + "日目です。");
+            // こっちのやり方もある↓
+            // Console.WriteLine("あなたが生まれてから今日まで{0}日目です。" + TotalDays.Days);
+            #endregion
+
+
 
         }
     }
