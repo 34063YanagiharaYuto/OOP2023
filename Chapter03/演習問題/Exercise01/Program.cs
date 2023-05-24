@@ -34,15 +34,32 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_2(List<int> numbers) {
-            
+            numbers.ForEach(s => Console.WriteLine(s / 2.0));
         }
 
         private static void Exercise1_3(List<int> numbers) {
-            
+            var wheres = numbers.Where(s => s >= 50);
+            foreach(var w in wheres) {
+                Console.WriteLine(w);
+            }
         }
+        /*短縮版
+         * foreach(var w in numbars.Where(s => s >= 50){
+         *     Console.WriteLine(w + " ");
+         * }
+         * 
+         * 一行で書く場合
+         * (numbers.Where(s => s >= 50).ToList()).ForEach(Console.WriteLine);
+         * 
+         */
+        
 
         private static void Exercise1_4(List<int> numbers) {
-            
+            var lists = numbers.Select(s => s * 2).ToList();
+            foreach(var s in lists) {
+                Console.WriteLine(s + " ");
+            }
         }
+        //一行で書く場合(numbers.Select(s => s * 2).ToList()).ForEach(Console.WriteLine);
     }
 }
