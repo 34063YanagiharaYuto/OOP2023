@@ -50,7 +50,7 @@ namespace Exercise02 {
 
         private static void Exercise2_4(List<string> names) {
             Console.WriteLine("**3.4**");
-            var slt = names.Where(s => s.StartsWith("B")).Select(s => s.Length);
+            var slt = names.Where(s => s.StartsWith("B")).Select(s => (s,s.Length));
             foreach(var s in slt) {
                 Console.WriteLine(s);
             }
