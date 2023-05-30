@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5BD9D6C4-5150-47EE-A274-BAEE3DC8A388}</ProjectGuid>
+    <ProjectGuid>{DAA30968-0A89-4CF3-BA85-3EC81ED186BF}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>DistanceConverter</RootNamespace>
-    <AssemblyName>DistanceConverter</AssemblyName>
+    <RootNamespace>Section07</RootNamespace>
+    <AssemblyName>Section07</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -44,7 +44,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FeetConverter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
