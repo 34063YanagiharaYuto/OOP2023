@@ -68,7 +68,7 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_5(YearMonth[] ymCollection) {
-            var numbers = ymCollection.Select(s => s.AddOneMonth()).ToArray();
+            var numbers = ymCollection.Select(s => s.AddOneMonth()).OrderBy(s => s.Year).ToArray();
             foreach(var n in numbers) {
                 Console.WriteLine(n);
             }
