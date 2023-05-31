@@ -16,17 +16,18 @@ namespace Exercise01 {
             Month = month;
 
         }
+
         // 4.1.2
         public bool Is21Century {
             get {
-                return 2001 <= Year && Year > 2100;
+                return 2001 <= Year && Year <= 2100;
             }
         }
 
         // 4.1.3
         public YearMonth AddOneMonth() {
             if (Month == 12) {
-                return new YearMonth(Year + 1,Month + 1);
+                return new YearMonth(Year + 1,1);
             }
             else {
                 return new YearMonth(Year, Month + 1);
@@ -36,6 +37,7 @@ namespace Exercise01 {
             // return new YearMonth(Month == 12 ? +1 : Year, Month == 12 ? 1 : Month + 1);
         }
 
+        // 4.1.4
         public override string ToString() {
             return Year + "年" + Month + "月";
         }
