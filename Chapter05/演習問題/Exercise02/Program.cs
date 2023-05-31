@@ -9,9 +9,14 @@ namespace Exercise02 {
         static void Main(string[] args) {
             Console.Write("文字列数字：");
             var num = Console.ReadLine();
-            int.TryParse(num, out var nums);
-            var number = nums.ToString("#,0");
-            Console.WriteLine(number);
+            if(int.TryParse(num, out var nums)){
+                var number = nums.ToString("#,0");
+                Console.WriteLine(number);
+            }
+            else {
+                Console.WriteLine("数字文字列ではありません。");
+            }
+            
 
         }
     }
