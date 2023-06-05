@@ -49,12 +49,16 @@ namespace Exercise03 {
 
         private static void Exercise3_5(string text) {
             var word = text.Split(' ').ToArray();
-            var sb = new StringBuilder();
-            foreach(var w in word) {
-                sb.Append(w + ' ');
+            
+            if(word.Length > 0) {
+                var sb = new StringBuilder();
+                foreach(var w in word) {
+                    sb.Append(w + ' ');
+                }
+                var texts = sb.ToString();
+                var replecad = texts.TrimEnd();
+                Console.WriteLine("{0}",replecad);
             }
-            var texts = sb.ToString();
-            Console.WriteLine(texts);
         }
     }
 }
