@@ -48,7 +48,7 @@ namespace Exercise03 {
         }
 
         private static void Exercise3_5(string text) {
-            var word = text.Split(' ').ToList();
+            var word = text.Split(' ').ToArray();
             var sb = new StringBuilder();
             foreach(var w in word) {
                 sb.Append(w + ' ');
