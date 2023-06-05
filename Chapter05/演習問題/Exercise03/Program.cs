@@ -22,11 +22,11 @@ namespace Exercise03 {
             Console.WriteLine("-----");
 
             Exercise3_5(text);
-            //{\rtf1}
         }
 
         private static void Exercise3_1(string text) {
             var list = text.Split(' ').Length - 1;
+            // var list = text.Count(c => c == ' '); ←この方法もある
             Console.WriteLine("空白数：{0}",list);
         }
 
@@ -36,15 +36,14 @@ namespace Exercise03 {
         }
 
         private static void Exercise3_3(string text) {
-            string[] words = text.Split(' ');
-            Console.WriteLine("単語数：{0}",words.Length);
+            var wordcnt = text.Split(' ');
+            Console.WriteLine("単語数：{0}",wordcnt.Length);
         }
 
         private static void Exercise3_4(string text) {
-            var words = text.Split(' ').Where(s => s.Length <= 4);
+            var words = text.Split(' ').Where(w => w.Length <= 4);
             foreach (var word in words) {
                 Console.WriteLine(word);
-                
             }
         }
 
