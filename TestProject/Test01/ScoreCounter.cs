@@ -13,7 +13,7 @@ namespace Test01 {
 
         //メソッドの概要： 
         private static IEnumerable<Student> ReadScore(string filePath) {
-            var scores = new List<Student>(); // 売り上げデータを格納する
+            var scores = new List<Student>(); // スコアデータを格納する
             var lines = File.ReadAllLines(filePath); // ファイルからすべてのデータを読み込む
 
             foreach (var line in lines) { // すべての行から一行ずつ取り出す
@@ -23,7 +23,7 @@ namespace Test01 {
                     Subject = items[1],
                     Score = int.Parse(items[2])
                 };
-                scores.Add(student); // Saleインスタンスをコレクションに追加
+                scores.Add(student); // Studentインスタンスをコレクションに追加
             }
             return scores;
 
@@ -34,9 +34,9 @@ namespace Test01 {
             var dict = new Dictionary<string, int>();
             foreach (var score in _score) {
                 if (dict.ContainsKey(score.Name))
-                    dict[score.Name] += score.Score;
+                    dict[score.Name] += score.Score;// その学生はいる
                 else
-                    dict[score.Name] = score.Score;
+                    dict[score.Name] = score.Score;// その学生はいない
             }
             return dict;
 
