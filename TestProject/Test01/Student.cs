@@ -1,5 +1,5 @@
 ﻿namespace Test01 {
-    class Student {
+    public class Student {
         // コンストラクタ
         public Student(string name,string subject,int score) {
             Name = name;
