@@ -70,7 +70,7 @@ namespace Section02 {
                     }
                 }
                 catch (KeyNotFoundException e){
-                    throw new ArgumentOutOfRangeException("入力した県名がありません。もう一度入力してください。", e);
+                    Console.WriteLine("入力した県名がありません。もう一度入力してください。", e);
                 }
             }
             #endregion
