@@ -28,12 +28,12 @@ namespace Section02 {
 
             #region 県庁所在地の登録プログラム
             var prefdict = new Dictionary<string, List<CityInfo>>();
-
+            string pref;
             Console.WriteLine("***市町村の登録***");
             while (true) {
                 var cityinfo = new CityInfo();
                 Console.Write("県名:");
-                var pref = Console.ReadLine();
+                pref = Console.ReadLine();
                 if (pref == "999") break;
                 Console.Write("市町村:");
                 cityinfo.City = Console.ReadLine();
@@ -63,14 +63,19 @@ namespace Section02 {
             else if (suuji == "2") {
                 Console.Write("出力する県名を入力:");
                 var anser = Console.ReadLine();
-                Console.WriteLine("**{0}**", anser);
-                foreach (var kenmei in prefdict[anser]) {
-                    Console.WriteLine("【{0}(人口：{1}人)】", kenmei.City, kenmei.Population);
+                try {
+                    Console.WriteLine("**{0}**", anser);
+                    foreach (var kenmei in prefdict[anser]) {
+                        Console.WriteLine("【{0}(人口：{1}人)】", kenmei.City, kenmei.Population);
+                    }
                 }
-
+                catch (KeyNotFoundException e){
+                    throw new ArgumentOutOfRangeException("入力した県名がありません。もう一度入力してください。", e);
+                }
             }
             #endregion
         }
+        
     }
 
     #region 県庁所在地の登録のCityInfoクラス
