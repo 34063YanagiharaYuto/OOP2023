@@ -63,7 +63,7 @@ namespace Section02 {
             else if (suuji == "2") {
                 Console.Write("出力する県名を入力:");
                 var anser = Console.ReadLine();
-                try {
+                try{
                     Console.WriteLine("**{0}**", anser);
                     foreach (var kenmei in prefdict[anser]) {
                         Console.WriteLine("【{0}(人口：{1}人)】", kenmei.City, kenmei.Population);
@@ -71,6 +71,8 @@ namespace Section02 {
                 }
                 catch (KeyNotFoundException e){
                     Console.WriteLine("入力した県名がありません。もう一度入力してください。", e);
+                    Console.Write("出力する県名を入力:");
+                    anser = Console.ReadLine();
                 }
             }
             #endregion
