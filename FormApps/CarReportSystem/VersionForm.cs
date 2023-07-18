@@ -17,5 +17,9 @@ namespace CarReportSystem {
         private void btOk_Click(object sender, EventArgs e) {
             this.Close();
         }
+
+        private void pbImage_Click(object sender, EventArgs e) {
+            pbImage.ImageLocation = @"pic\C#.png";
+        }
     }
 }
