@@ -176,6 +176,11 @@ namespace CarReportSystem {
         private void btImageDelete_Click(object sender, EventArgs e) {
             pbCarImage.Image = null;
         }
+
+        private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
+            cdColor.ShowDialog();
+            BackColor = cdColor.Color;
+        }
     }
 
 }
