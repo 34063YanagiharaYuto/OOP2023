@@ -7,12 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace CarReportSystem {
     public partial class Form1 : Form {
         // 管理用データ
         BindingList<CarReport> CarReports = new BindingList<CarReport>();
-        private uint mode;
+        private PictureBoxSizeMode mode;
+
+        // 設定情報保存用オブジェクト
+        Settings settings = new Settings();
+
 
         public Form1() {
             InitializeComponent();
@@ -21,7 +27,7 @@ namespace CarReportSystem {
 
         // ステータスラベルのテキスト表示・非表示(引数なしは、メッセージ非表示)
         private void statasLabelDisp(string msg = "") {
-            tsInfoText.Text = msg;
+            tsText.Text = msg;
         }
 
         // 追加ボタンがクリックされた時のイベントハンドラー
@@ -121,14 +127,23 @@ namespace CarReportSystem {
             dgvCarReports.Columns[5].Visible = false; // 画像項目非表示
             btModifyReport.Enabled = false;
             btDeleteReport.Enabled = false;
+            tmNow.Start();
+
+            // 設定ファイルを逆シリアル化して背景を設定
+            using(var reader = XmlReader.Create("settings.xml")) {
+                var serializer = new XmlSerializer(typeof(Settings));
+                settings = serializer.Deserialize(reader) as Settings;
+                BackColor = Color.FromArgb(settings.MainFormColor);
+            }
 
         }
 
-        private void dgvCarReports_Click(object sender, EventArgs e) {
-            btModifyReport.Enabled = true;
-            btDeleteReport.Enabled = true;
-            if (0 < dgvCarReports.RowCount) {
 
+        private void dgvCarReports_Click(object sender, EventArgs e) {
+            
+            if (0 < dgvCarReports.RowCount) {
+                btModifyReport.Enabled = true;
+                btDeleteReport.Enabled = true;
                 dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[0].Value;
                 cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
                 var temp = dgvCarReports.CurrentRow.Cells[2].Value;
@@ -168,13 +183,14 @@ namespace CarReportSystem {
             pbCarImage.Image = null;
         }
 
+        // 終了メニュー選択時のイベントハンドラ
         private void 終了XToolStripMenuItem_Click(object sender, EventArgs e) {
             Application.Exit();
         }
 
         private void バージョン情報ToolStripMenuItem_Click(object sender, EventArgs e) {
             var vf = new VersionForm();
-            vf.ShowDialog();   // モーダルダイヤログの
+            vf.ShowDialog();   // モーダルダイヤログとして表示
         }
 
         private void btImageDelete_Click(object sender, EventArgs e) {
@@ -184,17 +200,32 @@ namespace CarReportSystem {
         private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
             if(cdColor.ShowDialog() == DialogResult.OK) {
                 BackColor = cdColor.Color;
+                settings.MainFormColor = cdColor.Color.ToArgb();
             }
             
         }
 
         private void btScaleChange_Click(object sender, EventArgs e) {
-            pbCarImage.SizeMode = (PictureBoxSizeMode)mode;
-            mode++;
-            if(mode == 5) {
-                mode = 0;
-            }
+            pbCarImage.SizeMode = 
+                mode < PictureBoxSizeMode.Zoom ? 
+                ((mode == PictureBoxSizeMode.StretchImage) ? PictureBoxSizeMode.CenterImage : ++mode)
+                : PictureBoxSizeMode.Normal;
             
+            
+        }
+
+        private void tmNow_Tick(object sender, EventArgs e) {
+            var now = DateTime.Now;
+            tsTimerNow.Text = now.ToString("yyyy年MM月dd日(ddd)HH時mm分ss秒");
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
+
+            // 設定ファイルのシリアル化
+            using (var writer = XmlWriter.Create("Settings.xml")) {
+                var serializer = new XmlSerializer(settings.GetType());
+                serializer.Serialize(writer, settings);
+            }
         }
     }
 
