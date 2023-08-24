@@ -14,11 +14,10 @@ namespace CarReportSystem {
     public partial class Form1 : Form {
         // 管理用データ
         BindingList<CarReport> CarReports = new BindingList<CarReport>();
-        private PictureBoxSizeMode mode;
+        private int num = 0;
 
         // 設定情報保存用オブジェクト
         Settings settings = new Settings();
-
 
         public Form1() {
             InitializeComponent();
@@ -110,6 +109,8 @@ namespace CarReportSystem {
         private void btImageOpen_Click(object sender, EventArgs e) {
             if(ofdImageFileOpen.ShowDialog() == DialogResult.OK) {
                 pbCarImage.Image = Image.FromFile(ofdImageFileOpen.FileName);
+                btScaleChange.Enabled = true;
+                btImageDelete.Enabled = true;
             }
         }
 
@@ -118,6 +119,8 @@ namespace CarReportSystem {
             if (CarReports.Count == 0) {
                 btDeleteReport.Enabled = false;
                 btModifyReport.Enabled = false;
+                btScaleChange.Enabled = false;
+                btImageDelete.Enabled = false;
                 clear();
             }
             clear();
@@ -125,8 +128,11 @@ namespace CarReportSystem {
 
         private void Form1_Load(object sender, EventArgs e) {
             dgvCarReports.Columns[5].Visible = false; // 画像項目非表示
+            tsText.Text = "";
             btModifyReport.Enabled = false;
             btDeleteReport.Enabled = false;
+            btScaleChange.Enabled = false;
+            btImageDelete.Enabled = false;
             tmNow.Start();
 
             // 設定ファイルを逆シリアル化して背景を設定
@@ -138,12 +144,13 @@ namespace CarReportSystem {
 
         }
 
-
         private void dgvCarReports_Click(object sender, EventArgs e) {
             
             if (0 < dgvCarReports.RowCount) {
                 btModifyReport.Enabled = true;
                 btDeleteReport.Enabled = true;
+                btScaleChange.Enabled = true;
+                btImageDelete.Enabled = true;
                 dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[0].Value;
                 cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
                 var temp = dgvCarReports.CurrentRow.Cells[2].Value;
@@ -173,7 +180,6 @@ namespace CarReportSystem {
             //dgvCarReports.CurrentRow.Cells[4].Value = tbReport.Text;
             //dgvCarReports.CurrentRow.Cells[5].Value = pbCarImage.Image;
 
-
         }
         private void clear() {
             cbAuthor.Text = "";
@@ -195,32 +201,35 @@ namespace CarReportSystem {
 
         private void btImageDelete_Click(object sender, EventArgs e) {
             pbCarImage.Image = null;
+            if(pbCarImage.Image == null) {
+                btScaleChange.Enabled = false;
+                btImageDelete.Enabled = false;
+            }
         }
 
         private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
             if(cdColor.ShowDialog() == DialogResult.OK) {
                 BackColor = cdColor.Color;
                 settings.MainFormColor = cdColor.Color.ToArgb();
-            }
-            
+            }           
         }
 
         private void btScaleChange_Click(object sender, EventArgs e) {
-            pbCarImage.SizeMode = 
-                mode < PictureBoxSizeMode.Zoom ? 
-                ((mode == PictureBoxSizeMode.StretchImage) ? PictureBoxSizeMode.CenterImage : ++mode)
-                : PictureBoxSizeMode.Normal;
-            
-            
+            //pbCarImage.SizeMode = 
+            //    mode < PictureBoxSizeMode.Zoom ? 
+            //    ((mode == PictureBoxSizeMode.StretchImage) ? PictureBoxSizeMode.CenterImage : ++mode)
+            //    : PictureBoxSizeMode.Normal;
+
+            num = num < 4 ? ((num == 1) ? 3 : ++num) : 0;
+            pbCarImage.SizeMode = (PictureBoxSizeMode)num;
         }
 
         private void tmNow_Tick(object sender, EventArgs e) {
             var now = DateTime.Now;
-            tsTimerNow.Text = now.ToString("yyyy年MM月dd日(ddd)HH時mm分ss秒");
+            tsTimerNow.Text = now.ToString("現在時刻：" + "yyyy年MM月dd日(ddd)HH時mm分ss秒");
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e) {
-
             // 設定ファイルのシリアル化
             using (var writer = XmlWriter.Create("Settings.xml")) {
                 var serializer = new XmlSerializer(settings.GetType());
