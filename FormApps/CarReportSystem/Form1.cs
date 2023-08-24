@@ -236,6 +236,23 @@ namespace CarReportSystem {
                 serializer.Serialize(writer, settings);
             }
         }
+
+        private void 開くOToolStripMenuItem_Click(object sender, EventArgs e) {
+            if(sfdCarRepoSave.ShowDialog() == DialogResult.OK) {
+
+
+
+
+            }
+        }
+
+        private void 保存SToolStripMenuItem_Click(object sender, EventArgs e) {
+            if(ofdCarRepoOpen1.ShowDialog() == DialogResult.OK) {
+
+
+
+            }
+        }
     }
 
 }
