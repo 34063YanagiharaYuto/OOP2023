@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -52,12 +54,8 @@ namespace CarReportSystem {
                 CarImage = pbCarImage.Image,
             };
             CarReports.Add(cr);
-            if (!cbAuthor.Items.Contains(cbAuthor.Text)) {
-                cbAuthor.Items.Add(cbAuthor.Text);
-            }
-            if (!cbCarName.Items.Contains(cbCarName.Text)) {
-                cbCarName.Items.Add(cbCarName.Text);
-            }
+            Setauthor(cbAuthor.Text);
+            SetcarName(cbCarName.Text);
             dgvCarReports.DataSource = CarReports;
             dgvCarReports.ClearSelection();
             clear();
@@ -175,6 +173,7 @@ namespace CarReportSystem {
                 CarReports[dgvCarReports.CurrentRow.Index].Report = tbReport.Text;
                 CarReports[dgvCarReports.CurrentRow.Index].CarImage = pbCarImage.Image;
                 dgvCarReports.Refresh();  // 一覧更新
+                dgvCarReports.ClearSelection();
             }
 
             //dgvCarReports.CurrentRow.Cells[0].Value = dtpDate.Value;
@@ -191,6 +190,7 @@ namespace CarReportSystem {
             cbCarName.Text = "";
             tbReport.Text = "";
             pbCarImage.Image = null;
+            dgvCarReports.ClearSelection();
         }
 
         // 終了メニュー選択時のイベントハンドラ
@@ -242,19 +242,56 @@ namespace CarReportSystem {
         }
 
         private void 開くOToolStripMenuItem_Click(object sender, EventArgs e) {
-            if(sfdCarRepoSave.ShowDialog() == DialogResult.OK) {
-
-
-
-
+            if (ofdCarRepoOpen1.ShowDialog() == DialogResult.OK) {
+                try {
+                    // 逆シリアル化でバイナリ形式を取り込む
+                    var bf = new BinaryFormatter();
+                    using (FileStream fs = File.Open(ofdCarRepoOpen1.FileName, FileMode.Open, FileAccess.Read)) {
+                        CarReports = (BindingList<CarReport>)bf.Deserialize(fs);
+                        dgvCarReports.DataSource = null;
+                        dgvCarReports.DataSource = CarReports;
+                        dgvCarReports.ClearSelection();
+                        dgvCarReports.Columns[5].Visible = false; // 画像項目非表示
+                        cbAuthor.Items.Clear();
+                        cbCarName.Items.Clear();
+                        clear(); // 入力途中などのデータをすべて削除
+                        foreach(var reports in CarReports) {
+                            Setauthor(reports.Author);
+                            SetcarName(reports.CarName);
+                        }                        
+                    }
+                }
+                catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 
         private void 保存SToolStripMenuItem_Click(object sender, EventArgs e) {
-            if(ofdCarRepoOpen1.ShowDialog() == DialogResult.OK) {
-
-
-
+            if(sfdCarRepoSave.ShowDialog() == DialogResult.OK) {
+                try {
+                    // バイナリ形式でシリアル化
+                    var bf = new BinaryFormatter();
+                    using (FileStream fs = File.Open(sfdCarRepoSave.FileName, FileMode.Create)) {
+                        bf.Serialize(fs, CarReports);
+                    }
+                }
+                catch (Exception ex) {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            
+        }
+        // cbAuthorのコンボボックス登録
+        private void Setauthor(string author) {
+            if (!cbAuthor.Items.Contains(author)) {
+                cbAuthor.Items.Add(author);
+            }
+        }
+        // cbCarNameのコンボボックスの登録
+        private void SetcarName(string carname) {
+            if (!cbCarName.Items.Contains(carname)) {
+                cbCarName.Items.Add(carname);
             }
         }
     }
