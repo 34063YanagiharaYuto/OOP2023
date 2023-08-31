@@ -274,7 +274,7 @@ namespace CarReportSystem {
             this.tbReport.Location = new System.Drawing.Point(92, 299);
             this.tbReport.Multiline = true;
             this.tbReport.Name = "tbReport";
-            this.tbReport.Size = new System.Drawing.Size(290, 131);
+            this.tbReport.Size = new System.Drawing.Size(284, 131);
             this.tbReport.TabIndex = 5;
             // 
             // dgvCarReports
@@ -336,9 +336,9 @@ namespace CarReportSystem {
             // pbCarImage
             // 
             this.pbCarImage.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.pbCarImage.Location = new System.Drawing.Point(408, 56);
+            this.pbCarImage.Location = new System.Drawing.Point(388, 56);
             this.pbCarImage.Name = "pbCarImage";
-            this.pbCarImage.Size = new System.Drawing.Size(361, 274);
+            this.pbCarImage.Size = new System.Drawing.Size(381, 274);
             this.pbCarImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbCarImage.TabIndex = 9;
             this.pbCarImage.TabStop = false;
@@ -503,6 +503,7 @@ namespace CarReportSystem {
             // 
             // tsText
             // 
+            this.tsText.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.tsText.Name = "tsText";
             this.tsText.Size = new System.Drawing.Size(151, 17);
             this.tsText.Text = "※ここ指定文が表示されます。";
