@@ -29,6 +29,7 @@ namespace CarReportSystem {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,11 +79,21 @@ namespace CarReportSystem {
             this.label3.TabIndex = 6;
             this.label3.Text = "この画面は、バージョン情報を取得するためのものです。";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(249, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(107, 12);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "2023年8月xx日作成";
+            // 
             // VersionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(364, 198);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -106,5 +117,6 @@ namespace CarReportSystem {
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }

@@ -114,13 +114,10 @@ namespace CarReportSystem {
 
         private void btDeleteReport_Click(object sender, EventArgs e) {
             CarReports.RemoveAt(dgvCarReports.CurrentRow.Index);
-            if (CarReports.Count == 0) {
-                btDeleteReport.Enabled = false;
-                btModifyReport.Enabled = false;
-                btScaleChange.Enabled = false;
-                btImageDelete.Enabled = false;
-                clear();
-            }
+            btDeleteReport.Enabled = false;
+            btModifyReport.Enabled = false;
+            btScaleChange.Enabled = false;
+            btImageDelete.Enabled = false;
             clear();
         }
 
@@ -132,6 +129,9 @@ namespace CarReportSystem {
             btScaleChange.Enabled = false;
             btImageDelete.Enabled = false;
             tmNow.Start();
+
+            dgvCarReports.RowsDefaultCellStyle.BackColor = Color.Beige; // 全体に色を設定
+            dgvCarReports.AlternatingRowsDefaultCellStyle.BackColor = Color.Aquamarine; // 奇数行の色を上書き設定
 
             try {
                 // 設定ファイルを逆シリアル化して背景を設定
@@ -146,22 +146,7 @@ namespace CarReportSystem {
             }
         }
 
-        private void dgvCarReports_Click(object sender, EventArgs e) {
-            
-            if (0 < dgvCarReports.RowCount) {
-                btModifyReport.Enabled = true;
-                btDeleteReport.Enabled = true;
-                btScaleChange.Enabled = true;
-                btImageDelete.Enabled = true;
-                dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[0].Value;
-                cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
-                var temp = dgvCarReports.CurrentRow.Cells[2].Value;
-                setSelectedfMaler((CarReport.MakerGroup)temp);
-                cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
-                tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
-                pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
-            }
-        }
+        
 
         // 修正ボタン
         private void btModifyReport_Click(object sender, EventArgs e) {
@@ -211,6 +196,7 @@ namespace CarReportSystem {
             }
         }
 
+        // カーレポートシステムの裏の色設定
         private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
             if(cdColor.ShowDialog() == DialogResult.OK) {
                 BackColor = cdColor.Color;
@@ -267,6 +253,7 @@ namespace CarReportSystem {
             }
         }
 
+        // ファイルの保存する
         private void 保存SToolStripMenuItem_Click(object sender, EventArgs e) {
             if(sfdCarRepoSave.ShowDialog() == DialogResult.OK) {
                 try {
@@ -282,16 +269,34 @@ namespace CarReportSystem {
             }
             
         }
+
         // cbAuthorのコンボボックス登録
         private void Setauthor(string author) {
             if (!cbAuthor.Items.Contains(author)) {
                 cbAuthor.Items.Add(author);
             }
         }
+
         // cbCarNameのコンボボックスの登録
         private void SetcarName(string carname) {
             if (!cbCarName.Items.Contains(carname)) {
                 cbCarName.Items.Add(carname);
+            }
+        }
+
+        private void dgvCarReports_CellClick(object sender, DataGridViewCellEventArgs e) {
+            if (0 < dgvCarReports.RowCount) {
+                btModifyReport.Enabled = true;
+                btDeleteReport.Enabled = true;
+                btScaleChange.Enabled = true;
+                btImageDelete.Enabled = true;
+                dtpDate.Value = (DateTime)dgvCarReports.CurrentRow.Cells[0].Value;
+                cbAuthor.Text = dgvCarReports.CurrentRow.Cells[1].Value.ToString();
+                var temp = dgvCarReports.CurrentRow.Cells[2].Value;
+                setSelectedfMaler((CarReport.MakerGroup)temp);
+                cbCarName.Text = dgvCarReports.CurrentRow.Cells[3].Value.ToString();
+                tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
+                pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
             }
         }
     }
