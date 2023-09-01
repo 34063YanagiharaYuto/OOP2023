@@ -23,7 +23,7 @@ namespace CarReportSystem {
 
         public Form1() {
             InitializeComponent();
-            dgvCarReports.DataSource = CarReports;
+            // dgvCarReports.DataSource = CarReports;
         }
 
         // ステータスラベルのテキスト表示・非表示(引数なしは、メッセージ非表示)
@@ -298,6 +298,20 @@ namespace CarReportSystem {
                 tbReport.Text = dgvCarReports.CurrentRow.Cells[4].Value.ToString();
                 pbCarImage.Image = (Image)dgvCarReports.CurrentRow.Cells[5].Value;
             }
+        }
+
+        private void carReportTableBindingNavigatorSaveItem_Click(object sender, EventArgs e) {
+            this.Validate();
+            this.carReportTableBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.infosys202308DataSet);
+
+        }
+
+        // 接続ボタンイベントハンドラー
+        private void btConnection_Click(object sender, EventArgs e) {
+            // TODO: このコード行はデータを 'infosys202308DataSet.CarReportTable' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
+            this.carReportTableTableAdapter.Fill(this.infosys202308DataSet.CarReportTable);
+            dgvCarReports.DataSource = infosys202308DataSet.CarReportTable;
         }
     }
 }
