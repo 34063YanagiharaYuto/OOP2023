@@ -19,7 +19,7 @@ namespace CarReportSystem {
         private int num = 0;
 
         // 設定情報保存用オブジェクト
-        Settings settings = new Settings();
+        Settings settings = Settings.getInstance();
 
         public Form1() {
             InitializeComponent();
@@ -33,7 +33,6 @@ namespace CarReportSystem {
 
         // 追加ボタンがクリックされた時のイベントハンドラー
         private void btAddReport_Click(object sender, EventArgs e) {
-
             if(cbAuthor.Text == "") {
                 statasLabelDisp( "記録者を入力してください。");
                 return;
