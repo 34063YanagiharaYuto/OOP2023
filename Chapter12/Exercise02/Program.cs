@@ -37,12 +37,12 @@ namespace Exercise02 {
         }
 
         private static void Exercise2_2(object novelist, string v) {
-            using(var date = new FileStream("novelist.json", FileMode.Create, FileAccess.Write)) {
+            using(var stream = new FileStream(v, FileMode.Create, FileAccess.Write)) {
                 var setting = new DataContractJsonSerializerSettings {
                     DateTimeFormat = new DateTimeFormat("yyyy-MM-dd'T'HH:mm:ssZ")
                 };
                 var serializer = new DataContractJsonSerializer(novelist.GetType(),setting);
-                serializer.WriteObject(date, novelist);
+                serializer.WriteObject(stream, novelist);
             }
         }
     }

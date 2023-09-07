@@ -13,12 +13,14 @@ namespace Exercise02 {
         [XmlElement(ElementName = "name")]
         [DataMember(Name = "name")]
         public string Name { get; set; }
+
         [XmlElement(ElementName = "birth")]
         [DataMember(Name = "birth")]
         public DateTime Birth { get; set; }
-        [DataMember(Name = "masterpieces")]
+        
         [XmlArray("masterpieces")]
         [XmlArrayItem("title",typeof(string))]
+        [DataMember(Name = "masterpieces")]
         public String[] Masterpieces { get; set; }
     }
 }
