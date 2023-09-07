@@ -20,10 +20,8 @@ namespace Exercise01 {
             Console.WriteLine();
 
             Exercise1_2("employees.xml");
-            Console.WriteLine(File.ReadAllText("employees.xml"));
             Console.WriteLine();
             Exercise1_3("employees.xml");
-            Console.WriteLine(File.ReadAllText("employees.xml"));
             Console.WriteLine();
 
             Exercise1_4("employees.json");
