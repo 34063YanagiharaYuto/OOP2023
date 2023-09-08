@@ -44,21 +44,35 @@ namespace CarReportSystem {
                 statasLabelDisp(); // ステータスラベルのテキスト非表示
             }
 
-            var cr = new CarReport {
-                Date = dtpDate.Value,
-                Author = cbAuthor.Text,
-                Maker = getSelectedMaker(),
-                CarName = cbCarName.Text,
-                Report = tbReport.Text,
-                CarImage = pbCarImage.Image,
-            };
-            CarReports.Add(cr);
-            Setauthor(cbAuthor.Text);
-            SetcarName(cbCarName.Text);
-            dgvCarReports.DataSource = CarReports;
-            dgvCarReports.ClearSelection();
-            clear();
+            DataRow newRow = infosys202308DataSet.CarReportTable.NewRow();
+
+            newRow[1] = dtpDate.Value;
+            newRow[2] = cbAuthor.Text;
+            newRow[3] = getSelectedMaker();
+            newRow[4] = cbCarName.Text;
+            newRow[5] = tbReport.Text;
+            newRow[6] = ImageToByteArray(pbCarImage.Image);
+
+            infosys202308DataSet.CarReportTable.Rows.Add(newRow);
+            this.carReportTableTableAdapter.Update(infosys202308DataSet.CarReportTable);
             
+            clear();
+
+            //var cr = new CarReport {
+            //    Date = dtpDate.Value,
+            //    Author = cbAuthor.Text,
+            //    Maker = getSelectedMaker(),
+            //    CarName = cbCarName.Text,
+            //    Report = tbReport.Text,
+            //    CarImage = pbCarImage.Image,
+            //};
+            //CarReports.Add(cr);
+            //Setauthor(cbAuthor.Text);
+            //SetcarName(cbCarName.Text);
+            //dgvCarReports.DataSource = CarReports;
+            //dgvCarReports.ClearSelection();
+            
+
         }
 
         // ラジオボタンで選択されているメーカーを返却
@@ -111,8 +125,10 @@ namespace CarReportSystem {
             }
         }
 
+        // 削除ボタンハンドラ
         private void btDeleteReport_Click(object sender, EventArgs e) {
-            CarReports.RemoveAt(dgvCarReports.CurrentRow.Index);
+            dgvCarReports.Rows.RemoveAt(dgvCarReports.CurrentRow.Index);
+            this.carReportTableTableAdapter.Update(infosys202308DataSet.CarReportTable);
             btDeleteReport.Enabled = false;
             btModifyReport.Enabled = false;
             btScaleChange.Enabled = false;
