@@ -33,10 +33,11 @@ namespace CarReportSystem {
 
         // 追加ボタンがクリックされた時のイベントハンドラー
         private void btAddReport_Click(object sender, EventArgs e) {
-            if(cbAuthor.Text == "") {
-                statasLabelDisp( "記録者を入力してください。");
+            if (cbAuthor.Text == "") {
+                statasLabelDisp("記録者を入力してください。");
                 return;
-            }else if(cbCarName.Text == "") {
+            }
+            else if (cbCarName.Text == "") {
                 statasLabelDisp("車名を入力してください。");
                 return;
             }
@@ -55,7 +56,7 @@ namespace CarReportSystem {
 
             infosys202308DataSet.CarReportTable.Rows.Add(newRow);
             this.carReportTableTableAdapter.Update(infosys202308DataSet.CarReportTable);
-            
+
             clear();
 
             //var cr = new CarReport {
@@ -71,8 +72,6 @@ namespace CarReportSystem {
             //SetcarName(cbCarName.Text);
             //dgvCarReports.DataSource = CarReports;
             //dgvCarReports.ClearSelection();
-            
-
         }
 
         // ラジオボタンで選択されているメーカーを返却
@@ -118,7 +117,7 @@ namespace CarReportSystem {
         }
 
         private void btImageOpen_Click(object sender, EventArgs e) {
-            if(ofdImageFileOpen.ShowDialog() == DialogResult.OK) {
+            if (ofdImageFileOpen.ShowDialog() == DialogResult.OK) {
                 pbCarImage.Image = Image.FromFile(ofdImageFileOpen.FileName);
                 btScaleChange.Enabled = true;
                 btImageDelete.Enabled = true;
@@ -156,16 +155,16 @@ namespace CarReportSystem {
                     BackColor = Color.FromArgb(settings.MainFormColor);
                 }
             }
-            catch (Exception ex){
+            catch (Exception ex) {
                 MessageBox.Show(ex.Message);
             }
         }
 
-        
+
 
         // 修正ボタン
         private void btModifyReport_Click(object sender, EventArgs e) {
-          
+
             dgvCarReports.CurrentRow.Cells[1].Value = dtpDate.Value;
             dgvCarReports.CurrentRow.Cells[2].Value = cbAuthor.Text;
             dgvCarReports.CurrentRow.Cells[3].Value = getSelectedMaker();
@@ -198,7 +197,7 @@ namespace CarReportSystem {
 
         private void btImageDelete_Click(object sender, EventArgs e) {
             pbCarImage.Image = null;
-            if(pbCarImage.Image == null) {
+            if (pbCarImage.Image == null) {
                 btScaleChange.Enabled = false;
                 btImageDelete.Enabled = false;
             }
@@ -206,10 +205,10 @@ namespace CarReportSystem {
 
         // カーレポートシステムの裏の色設定
         private void 色設定ToolStripMenuItem_Click(object sender, EventArgs e) {
-            if(cdColor.ShowDialog() == DialogResult.OK) {
+            if (cdColor.ShowDialog() == DialogResult.OK) {
                 BackColor = cdColor.Color;
                 settings.MainFormColor = cdColor.Color.ToArgb();
-            }           
+            }
         }
 
         private void btScaleChange_Click(object sender, EventArgs e) {
@@ -249,10 +248,10 @@ namespace CarReportSystem {
                         cbAuthor.Items.Clear();
                         cbCarName.Items.Clear();
                         clear(); // 入力途中などのデータをすべて削除
-                        foreach(var reports in CarReports) {
+                        foreach (var reports in CarReports) {
                             Setauthor(reports.Author);
                             SetcarName(reports.CarName);
-                        }                        
+                        }
                     }
                 }
                 catch (Exception ex) {
@@ -263,7 +262,7 @@ namespace CarReportSystem {
 
         // ファイルの保存する
         private void 保存SToolStripMenuItem_Click(object sender, EventArgs e) {
-            if(sfdCarRepoSave.ShowDialog() == DialogResult.OK) {
+            if (sfdCarRepoSave.ShowDialog() == DialogResult.OK) {
                 try {
                     // バイナリ形式でシリアル化
                     var bf = new BinaryFormatter();
@@ -275,7 +274,6 @@ namespace CarReportSystem {
                     MessageBox.Show(ex.Message);
                 }
             }
-            
         }
 
         // cbAuthorのコンボボックス登録
@@ -306,15 +304,16 @@ namespace CarReportSystem {
                 tbReport.Text = dgvCarReports.CurrentRow.Cells[5].Value.ToString();
 
                 // 別のやり方
-                //pbCarImage.Image = !dgvCarReports.CurrentRow.Cells[6].Value.Equals(DBNull.Value) ?
-                //                    ByteArrayToImage((Byte[])dgvCarReports.CurrentRow.Cells[6].Value) : null;
+                pbCarImage.Image = !dgvCarReports.CurrentRow.Cells[6].Value.Equals(DBNull.Value)
+                                        && ((Byte[])dgvCarReports.CurrentRow.Cells[6].Value).Length != 0 ?
+                                    ByteArrayToImage((Byte[])dgvCarReports.CurrentRow.Cells[6].Value) : null;
 
-                if(!dgvCarReports.CurrentRow.Cells[6].Value.Equals(DBNull.Value)) {
-                    pbCarImage.Image = ByteArrayToImage((Byte[])dgvCarReports.CurrentRow.Cells[6].Value);
-                }
-                else {
-                    pbCarImage.Image = null;
-                }
+                //if(!dgvCarReports.CurrentRow.Cells[6].Value.Equals(DBNull.Value)) {
+                //    pbCarImage.Image = ByteArrayToImage((Byte[])dgvCarReports.CurrentRow.Cells[6].Value);
+                //}
+                //else {
+                //    pbCarImage.Image = null;
+                //}
             }
         }
 
@@ -336,7 +335,6 @@ namespace CarReportSystem {
             this.Validate();
             this.carReportTableBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.infosys202308DataSet);
-
         }
 
         // 接続ボタンイベントハンドラー
@@ -344,6 +342,12 @@ namespace CarReportSystem {
             // TODO: このコード行はデータを 'infosys202308DataSet.CarReportTable' テーブルに読み込みます。必要に応じて移動、または削除をしてください。
             this.carReportTableTableAdapter.Fill(this.infosys202308DataSet.CarReportTable);
             dgvCarReports.DataSource = infosys202308DataSet.CarReportTable;
+
+            // DBのAuthorとCarNameをコンボボックスに登録
+            foreach (var reports in infosys202308DataSet.CarReportTable) {
+                Setauthor(reports.Author);
+                SetcarName(reports.CarName);
+            }
         }
     }
 }
