@@ -121,6 +121,7 @@ namespace CarReportSystem {
         }
 
         private void Form1_Load(object sender, EventArgs e) {
+            dgvCarReports.Columns[0].Visible = false; // ID項目非表示
             dgvCarReports.Columns[6].Visible = false; // 画像項目非表示
             tsText.Text = "";
             btModifyReport.Enabled = false;
@@ -279,16 +280,29 @@ namespace CarReportSystem {
             }
         }
 
+        // データベース接続
         private void 接続OToolStripMenuItem_Click_1(object sender, EventArgs e) {
             dbConnection();
         }
 
+        // 記録者の検索
         private void btAuthorSearch_Click(object sender, EventArgs e) {
             carReportTableTableAdapter.FillByAuthor(this.infosys202308DataSet.CarReportTable, tbAuthorSearch.Text);
         }
 
+        // 車名の検索
         private void btCarNameSearch_Click(object sender, EventArgs e) {
-            carReportTableTableAdapter.FillByCarName(this.infosys202308DataSet.CarReportTable, tbCarNameSearch.Text);
+            carReportTableTableAdapter.FillByCarName(this.infosys202308DataSet.CarReportTable,tbCarNameSearch.Text);
+        }
+
+        // 日付の検索(Date①からDate②)
+        private void btDateSearth_Click(object sender, EventArgs e) {
+            carReportTableTableAdapter.FillByDate(this.infosys202308DataSet.CarReportTable,dtpSearth_1.Value.ToString(),dtpSearth_2.Value.ToString());
+        }
+
+        // リセットボタン
+        private void btResetSearth_Click(object sender, EventArgs e) {
+            this.carReportTableTableAdapter.Fill(this.infosys202308DataSet.CarReportTable);
         }
     }
 }
