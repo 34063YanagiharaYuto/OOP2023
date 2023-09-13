@@ -11,6 +11,7 @@ namespace SampleEntityFramework {
     class Program {
         static void Main(string[] args) {
 
+            #region 演習問題ではないもの
             //DisplayAllBooks();
 
             //AddAuthors();
@@ -24,6 +25,28 @@ namespace SampleEntityFramework {
             //foreach(var book in GetBooks()) {
             //    Console.WriteLine($"{book.Title}{book.Author.Name}");
             //}
+            #endregion
+
+            Console.WriteLine("# 1.1");
+            Exercise1_1();
+
+            Console.WriteLine();
+            Console.WriteLine("# 1.2");
+            Exercise1_2();
+
+            Console.WriteLine();
+            Console.WriteLine("# 1.3");
+            Exercise1_3();
+
+            Console.WriteLine();
+            Console.WriteLine("# 1.4");
+            Exercise1_4();
+
+            Console.WriteLine();
+            Console.WriteLine("# 1.5");
+            Exercise1_5();
+
+            Console.ReadLine();
 
             using (var db = new BooksDbContext()) {
 
@@ -37,6 +60,26 @@ namespace SampleEntityFramework {
             Console.ReadLine();
             Console.WriteLine();
 
+        }
+
+        private static void Exercise1_1() {
+            
+        }
+
+        private static void Exercise1_2() {
+            
+        }
+
+        private static void Exercise1_3() {
+            
+        }
+
+        private static void Exercise1_4() {
+            
+        }
+
+        private static void Exercise1_5() {
+            
         }
 
         // List 13-5
