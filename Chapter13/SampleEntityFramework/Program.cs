@@ -28,7 +28,7 @@ namespace SampleEntityFramework {
             #endregion
 
             Console.WriteLine("# 1.1");
-            Exercise1_1();
+            //Exercise1_1();
 
             Console.WriteLine();
             Console.WriteLine("# 1.2");
@@ -63,23 +63,92 @@ namespace SampleEntityFramework {
         }
 
         private static void Exercise1_1() {
-            
+            using (var db = new BooksDbContext()) {
+                var author1 = new Author {
+                    Name = "菊池寛",
+                    Birthday = new DateTime(1888, 12, 26),
+                    Gender = "男性",
+                    
+                };
+
+                db.Authors.Add(author1);
+                var author2 = new Author {
+                    Name = "川端康成",
+                    Birthday = new DateTime(1899, 6, 14),
+                    Gender = "男性",
+                };
+
+                db.Authors.Add(author2);
+                db.SaveChanges();
+
+                var Author_1 = db.Authors.Single(a => a.Name == "夏目漱石");
+                var book1 = new Book {
+                    Title = "こころ",
+                    PublishedYear = 1991,
+                    Author = Author_1,
+                };
+                db.Books.Add(book1);
+                
+                var Author_2 = db.Authors.Single(a => a.Name == "川端康成");
+                var book2 = new Book {
+                    Title = "伊豆の踊子",
+                    PublishedYear = 2003,
+                    Author = Author_2,
+                };
+                db.Books.Add(book2);
+
+                var Author_3 = db.Authors.Single(a => a.Name == "菊池寛");
+                var book3 = new Book {
+                    Title = "真珠夫人",
+                    PublishedYear = 2002,
+                    Author = Author_3,
+                };
+                db.Books.Add(book3);
+
+                var Author_4 = db.Authors.Single(a => a.Name == "宮沢賢治");
+                var book4 = new Book {
+                    Title = "注文の多い料理店",
+                    PublishedYear = 2000,
+                    Author = Author_4,
+                };
+                db.Books.Add(book4);
+                db.SaveChanges();
+            }
         }
 
         private static void Exercise1_2() {
-            
+            var books = GetBooks();
+            foreach (var book in books) {
+                Console.WriteLine($"{book.Title}  {book.Author.Name}");
+            }
+            Console.ReadLine(); // コンソールの画面をすぐに消さないためにキー入力待ちにする
         }
 
         private static void Exercise1_3() {
-            
+            using (var db = new BooksDbContext()) {
+                var maxLength = db.Books.Select (t => t.Title.Length).Max();
+                foreach (var book in db.Books.Where(t => t.Title.Length == maxLength)) {
+                    Console.WriteLine($"{book.Title}");
+                }
+                
+                Console.WriteLine();
+            }
         }
 
         private static void Exercise1_4() {
-            
+            var minpublishedYear = GetBooks().OrderBy(o => o.PublishedYear.Value).ThenBy(t => t.PublishedYear.Value).Take(3);
+            foreach (var pby in minpublishedYear) {
+                Console.WriteLine($"{pby.Title}  {pby.Author.Name}");
+            }
+
         }
 
         private static void Exercise1_5() {
-            
+            var groups = GetBooks().GroupBy(g => g.Author.Name).OrderByDescending(o => o.Key);
+            foreach (var group in groups) {
+                
+                }
+
         }
 
         // List 13-5
@@ -114,7 +183,7 @@ namespace SampleEntityFramework {
         static IEnumerable<Book> GetBooks() {
             using (var db = new BooksDbContext()) {
                 return db.Books
-                    .Where(book => book.PublishedYear > 1900)
+                    .Where(book => book.PublishedYear > 1901)
                     .Include(nameof(Author))
                     .ToList();
             }
