@@ -48,17 +48,17 @@ namespace SampleEntityFramework {
 
             Console.ReadLine();
 
-            using (var db = new BooksDbContext()) {
+            //using (var db = new BooksDbContext()) {
 
-                db.Database.Log = sql => { Debug.Write(sql); };
-                var count = db.Books.Count();
-                Console.WriteLine(count);
-            }
+            //    db.Database.Log = sql => { Debug.Write(sql); };
+            //    var count = db.Books.Count();
+            //    Console.WriteLine(count);
+            //}
 
-            //InsertBooks();
-            //Console.Write("データを挿入しました。続けるにはEnterキーを押してください。");
-            Console.ReadLine();
-            Console.WriteLine();
+            ////InsertBooks();
+            ////Console.Write("データを挿入しました。続けるにはEnterキーを押してください。");
+            //Console.ReadLine();
+            //Console.WriteLine();
 
         }
 
@@ -144,10 +144,14 @@ namespace SampleEntityFramework {
         }
 
         private static void Exercise1_5() {
-            var groups = GetBooks().GroupBy(g => g.Author.Name).OrderByDescending(o => o.Key);
+            var groups = GetBooks().GroupBy(g => g.Author).OrderByDescending(o => o.Key.Birthday).ThenBy(t => t.Key.Name);
             foreach (var group in groups) {
-                
+                Console.WriteLine($"著者名:{group.Key.Name}");
+                foreach(var Titles in group) {
+                    Console.WriteLine($"タイトル:{Titles.Title}  発行年:{Titles.PublishedYear}");
                 }
+                Console.WriteLine(); // 改行
+            }
 
         }
 
