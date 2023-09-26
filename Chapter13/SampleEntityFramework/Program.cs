@@ -147,8 +147,8 @@ namespace SampleEntityFramework {
             var groups = GetBooks().GroupBy(g => g.Author).OrderByDescending(o => o.Key.Birthday).ThenBy(t => t.Key.Name);
             foreach (var group in groups) {
                 Console.WriteLine($"著者名:{group.Key.Name}");
-                foreach(var Titles in group) {
-                    Console.WriteLine($"タイトル:{Titles.Title}  発行年:{Titles.PublishedYear}");
+                foreach(var books in group) {
+                    Console.WriteLine($"タイトル:{books.Title}  発行年:{books.PublishedYear}");
                 }
                 Console.WriteLine(); // 改行
             }
