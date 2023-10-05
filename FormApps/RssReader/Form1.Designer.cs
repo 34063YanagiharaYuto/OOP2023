@@ -76,6 +76,7 @@ namespace RssReader {
             this.cbMainRss.Name = "cbMainRss";
             this.cbMainRss.Size = new System.Drawing.Size(121, 20);
             this.cbMainRss.TabIndex = 4;
+            this.cbMainRss.Click += new System.EventHandler(this.cbMainRss_Click);
             // 
             // Form1
             // 

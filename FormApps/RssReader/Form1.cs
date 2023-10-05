@@ -23,7 +23,11 @@ namespace RssReader {
                 var url = wc.OpenRead(@"https://news.yahoo.co.jp/rss");
                 XDocument xdoc = XDocument.Load(url);
                 var topics = xdoc.Root.Descendants("li").Descendants("a");
-                foreach(var topic in topics) {
+                nodes = xdoc.Root.Descendants("li").Descendants("a")
+                    .Select(s => new ItemData {
+                        Xml = (string)s.Element("href")
+                     }).ToList();
+                foreach (var topic in topics) {
                     if (topic.FirstAttribute.Value.Contains(".xml")
                         && !cbMainRss.Items.Contains(topic.Value)){
                         cbMainRss.Items.Add(topic.Value);
@@ -56,7 +60,14 @@ namespace RssReader {
         }
 
         private void lbRssTitle_Click(object sender, EventArgs e) {
+            if(lbRssTitle.SelectedIndex == -1) {
+                return;
+            }
             wbBrowser.Url = new Uri(nodes[lbRssTitle.SelectedIndex].Link);
-        } 
+        }
+
+        private void cbMainRss_Click(object sender, EventArgs e) {
+
+        }
     }
 }
