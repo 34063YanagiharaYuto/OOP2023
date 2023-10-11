@@ -18,26 +18,19 @@ namespace RssReader {
         }
         
         private void Form1_Load(object sender, EventArgs e) {
-            using(var wc = new WebClient()) {
-                wc.Encoding = Encoding.UTF8;
-                var url = wc.OpenRead(@"https://news.yahoo.co.jp/rss");
-                XDocument xdoc = XDocument.Load(url);
-                var topics = xdoc.Root.Descendants("li").Descendants("a");
-                nodes = xdoc.Root.Descendants("li").Descendants("a")
-                    .Select(s => new ItemData {
-                        Xml = (string)s.Element("href")
-                     }).ToList();
-                foreach (var topic in topics) {
-                    if (topic.FirstAttribute.Value.Contains(".xml")
-                        && !cbMainRss.Items.Contains(topic.Value)){
-                        cbMainRss.Items.Add(topic.Value);
-                    }
-                }
-            }
+            cbMainRss.Items.Add(@"https://news.yahoo.co.jp/rss/topics/local.xml");
+            cbMainRss.Items.Add(@"https://news.yahoo.co.jp/rss/topics/domestic.xml");
+            cbMainRss.Items.Add(@"https://news.yahoo.co.jp/rss/topics/entertainment.xml");
+            cbMainRss.Items.Add(@"https://news.yahoo.co.jp/rss/topics/it.xml");
+            cbMainRss.Items.Add(@"https://news.yahoo.co.jp/rss/topics/science.xml");
         }
 
         private void btGet_Click(object sender, EventArgs e) {
-            using (var wc = new WebClient()) {
+            if(tbUrl.Text == "") {
+                return;
+            }
+            else {
+                using (var wc = new WebClient()) {
                 var url = wc.OpenRead(tbUrl.Text);
                 XDocument xdoc = XDocument.Load(url);
 
@@ -57,6 +50,9 @@ namespace RssReader {
                     lbRssTitle.Items.Add(node.Title);
                 }
             }
+
+            }
+            
         }
 
         private void lbRssTitle_Click(object sender, EventArgs e) {
@@ -67,6 +63,11 @@ namespace RssReader {
         }
 
         private void cbMainRss_Click(object sender, EventArgs e) {
+            var a = cbMainRss.SelectedItem;
+
+        }
+
+        private void btAddUrl_Click(object sender, EventArgs e) {
 
         }
     }

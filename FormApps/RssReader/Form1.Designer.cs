@@ -29,6 +29,7 @@ namespace RssReader {
             this.lbRssTitle = new System.Windows.Forms.ListBox();
             this.wbBrowser = new System.Windows.Forms.WebBrowser();
             this.cbMainRss = new System.Windows.Forms.ComboBox();
+            this.btAddUrl = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbUrl
@@ -72,11 +73,21 @@ namespace RssReader {
             // cbMainRss
             // 
             this.cbMainRss.FormattingEnabled = true;
-            this.cbMainRss.Location = new System.Drawing.Point(940, 23);
+            this.cbMainRss.Location = new System.Drawing.Point(942, 71);
             this.cbMainRss.Name = "cbMainRss";
             this.cbMainRss.Size = new System.Drawing.Size(121, 20);
             this.cbMainRss.TabIndex = 4;
             this.cbMainRss.Click += new System.EventHandler(this.cbMainRss_Click);
+            // 
+            // btAddUrl
+            // 
+            this.btAddUrl.Location = new System.Drawing.Point(964, 12);
+            this.btAddUrl.Name = "btAddUrl";
+            this.btAddUrl.Size = new System.Drawing.Size(79, 31);
+            this.btAddUrl.TabIndex = 5;
+            this.btAddUrl.Text = "登録";
+            this.btAddUrl.UseVisualStyleBackColor = true;
+            this.btAddUrl.Click += new System.EventHandler(this.btAddUrl_Click);
             // 
             // Form1
             // 
@@ -84,6 +95,7 @@ namespace RssReader {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Aqua;
             this.ClientSize = new System.Drawing.Size(1075, 673);
+            this.Controls.Add(this.btAddUrl);
             this.Controls.Add(this.cbMainRss);
             this.Controls.Add(this.wbBrowser);
             this.Controls.Add(this.lbRssTitle);
@@ -104,6 +116,7 @@ namespace RssReader {
         private System.Windows.Forms.ListBox lbRssTitle;
         private System.Windows.Forms.WebBrowser wbBrowser;
         private System.Windows.Forms.ComboBox cbMainRss;
+        private System.Windows.Forms.Button btAddUrl;
     }
 }
 
