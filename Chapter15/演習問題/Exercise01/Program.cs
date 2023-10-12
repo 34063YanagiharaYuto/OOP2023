@@ -100,6 +100,19 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_8() {
+            var joins = Library.Categories
+                               .GroupJoin(Library.Books,
+                                    c => c.Id,
+                                    b => b.CategoryId,
+                                    (c, book) => new {
+                                        Category = c.Name,
+                                        Count = book.Count(),
+                                    }
+                               );
+            foreach(var item in joins) {
+                if(item.Count >= 4)
+                Console.WriteLine($"{item.Category}");
+            }
         }
     }
 }
