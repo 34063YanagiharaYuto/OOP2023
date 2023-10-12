@@ -30,12 +30,33 @@ namespace Exercise01 {
         }
 
         private static void Exercise1_3() {
+            var selected = Library.Books
+                            .GroupBy(g => g.PublishedYear)
+                            .OrderBy(o => o.Key);                          
+            foreach(var book in selected) {
+                Console.WriteLine("{0}年　{1}冊",book.Key,book.Count());
+            }
         }
 
         private static void Exercise1_4() {
+            var order = Library.Books
+                         .OrderByDescending(od => od.PublishedYear)
+                         .OrderByDescending(o => o.Price)
+                         .Join(Library.Categories, book => book.CategoryId, category => category.Id,
+                               (book, category) => new {
+                                   PublishedYear = book.PublishedYear,
+                                   Price = book.Price,
+                                   Title = book.Title,
+                                   Category = category.Name,
+                               }
+                               );
+            foreach(var v in order) {
+                Console.WriteLine($"{v.PublishedYear}年 {v.Price}円 {v.Title} ({v.Category})");
+            }
         }
 
         private static void Exercise1_5() {
+
         }
 
         private static void Exercise1_6() {
