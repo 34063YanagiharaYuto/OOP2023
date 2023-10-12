@@ -41,7 +41,7 @@ namespace Exercise01 {
         private static void Exercise1_4() {
             var order = Library.Books
                          .OrderByDescending(od => od.PublishedYear)
-                         .OrderByDescending(o => o.Price)
+                         .ThenByDescending(o => o.Price)
                          .Join(Library.Categories, book => book.CategoryId, category => category.Id,
                                (book, category) => new {
                                    PublishedYear = book.PublishedYear,
