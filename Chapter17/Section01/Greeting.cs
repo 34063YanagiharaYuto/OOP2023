@@ -5,20 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Section01 {
-    class GreetingMorning {
-        public string GetMessage() {
+    class GreetingMorning : GreetingBase {
+        public override string GetMessage() {
             return "おはよう";
         }
     }
 
-    class GreetingAfternoon {
-        public string GetMessage() {
+    class GreetingAfternoon : GreetingBase {
+        public override string GetMessage() {
             return "こんにちは";
         }
     }
 
-    class GreetingEvening {
-        public string GetMessage() {
+    class GreetingEvening : GreetingBase {
+        public override string GetMessage() {
             return "こんばんは";
         }
     }
