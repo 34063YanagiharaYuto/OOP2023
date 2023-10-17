@@ -32,9 +32,9 @@ namespace Exercise01 {
         private static void Exercise1_3() {
             var selected = Library.Books
                             .GroupBy(g => g.PublishedYear)
-                            .OrderBy(o => o.Key);                          
-            foreach(var book in selected) {
-                Console.WriteLine("{0}年　{1}冊",book.Key,book.Count());
+                            .OrderBy(o => o.Key);
+            foreach (var book in selected) {
+                Console.WriteLine("{0}年　{1}冊", book.Key, book.Count());
             }
         }
 
@@ -50,7 +50,7 @@ namespace Exercise01 {
                                    Category = category.Name,
                                }
                                );
-            foreach(var v in order) {
+            foreach (var v in order) {
                 Console.WriteLine($"{v.PublishedYear}年 {v.Price}円 {v.Title} ({v.Category})");
             }
         }
@@ -63,7 +63,7 @@ namespace Exercise01 {
                                      category => category.Id,
                                      (book, category) => category.Name)
                                .Distinct();
-            foreach(var name in names) {
+            foreach (var name in names) {
                 Console.WriteLine(name);
             }
         }
@@ -78,22 +78,23 @@ namespace Exercise01 {
                                         Books = books
                                     })
                                 .OrderBy(o => o.Category);
-            foreach(var group in groups) {
+            foreach (var group in groups) {
                 Console.WriteLine("#{0}", group.Category);
-                foreach(var book in group.Books) {
+                foreach (var book in group.Books) {
                     Console.WriteLine($"   {book.Title}");
                 }
             }
         }
 
         private static void Exercise1_7() {
+            // var catid = Library.Categories.Single(c => c.Name == "Development").Id;
             var groups = Library.Books
-                               .Where(w => w.CategoryId == 1)
+                               .Where(w => w.CategoryId == 1) // 1のところはcatidを入れる
                                .GroupBy(g => g.PublishedYear)
                                .OrderBy(o => o.Key);
-            foreach(var group in groups) {
-                Console.WriteLine("#{0}年",group.Key);
-                foreach(var book in group) {
+            foreach (var group in groups) {
+                Console.WriteLine("#{0}年", group.Key);
+                foreach (var book in group) {
                     Console.WriteLine($"   {book.Title}");
                 }
             }
@@ -102,16 +103,16 @@ namespace Exercise01 {
         private static void Exercise1_8() {
             var joins = Library.Categories
                                .GroupJoin(Library.Books,
-                                    c => c.Id,
-                                    b => b.CategoryId,
-                                    (c, book) => new {
-                                        Category = c.Name,
-                                        Count = book.Count(),
-                                    }
+                                   c => c.Id,
+                                   b => b.CategoryId,
+                                   (c, book) => new {
+                                       Category = c.Name,
+                                       Count = book.Count(),
+                                   }
                                );
-            foreach(var item in joins) {
-                if(item.Count >= 4)
-                Console.WriteLine($"{item.Category}");
+            foreach (var item in joins) {
+                if (item.Count >= 4)
+                    Console.WriteLine($"{item.Category}");
             }
         }
     }
