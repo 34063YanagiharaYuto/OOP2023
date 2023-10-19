@@ -14,7 +14,7 @@ namespace Exercise02 {
 
                 var converter = new Framework.DistanceConverter(from, to);
                 var result = converter.Convert(distance);
-                Console.WriteLine($"{distance}{from.UnitName}は、{result:0.000}{to.UnitName}です\n");
+                Console.WriteLine($"{distance}{from.UnitName}は、{result:0.000000}{to.UnitName}です\n");
             }
         }
 
