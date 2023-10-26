@@ -43,5 +43,6 @@
             <ComboBoxItem Content="冬"/>
         </ComboBox>
         <TextBlock x:Name="seasonTextBlock" Grid.Row="3"  Grid.Column="2"/>
+        <Label Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top"/>
     </Grid>
 </Window>

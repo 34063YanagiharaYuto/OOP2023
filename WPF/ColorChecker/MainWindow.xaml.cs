@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SampleSlider {
+namespace ColorChecker {
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
@@ -22,8 +22,11 @@ namespace SampleSlider {
             InitializeComponent();
         }
 
-        private void SampleSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
-
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
+            byte r = (byte)rSlider.Value;
+            byte g = (byte)gSlider.Value;
+            byte b = (byte)bSlider.Value;
+            
         }
     }
 }
