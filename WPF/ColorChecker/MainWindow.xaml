@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ColorChecker"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="1100">
+        Title="MainWindow" Height="500" Width="1000">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -15,38 +15,60 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label x:Name="colorArea" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" Width="322" Height="424" Background="#FFF1F1F1">
+        <Label x:Name="colorArea" Margin="15,15,15,15" Background="#FFF1F1F1" Grid.Column="0">
             <Label.BindingGroup>
                 <BindingGroup/>
             </Label.BindingGroup>
         </Label>
-        <Grid Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="469" Width="364">
+        <Grid Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Height="469" Width="331">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBlock HorizontalAlignment="Left" Margin="49,66,0,0" TextWrapping="Wrap" Text="R" VerticalAlignment="Top" FontSize="24"/>
-            <Slider x:Name="rSlider" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="42" Width="198" TickPlacement="TopLeft"
-                    Minimum="0" Maximum="255" Margin="10,0,0,10" ValueChanged="Slider_ValueChanged"/>
-            <TextBox x:Name="rValue" Grid.Column="2" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="53"
-                     Text="{Binding ElementName=rSlider,StringFormat={}{0:0},Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" Margin="10,0,0,14" FontSize="28"/>
-            <TextBlock HorizontalAlignment="Left" Margin="49,66,0,0" TextWrapping="Wrap" Text="G" VerticalAlignment="Top" FontSize="24" Grid.Row="1"/>
-            <Slider x:Name="gSlider" Grid.Column="1" HorizontalAlignment="Left" Margin="10,74,0,0" Grid.Row="1" VerticalAlignment="Top" Width="198" TickPlacement="TopLeft"
-                    Minimum="0" Maximum="255" ValueChanged="Slider_ValueChanged"/>
-            <TextBox x:Name="gValue" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="53"
-                     Text="{Binding ElementName=gSlider,StringFormat={}{0:0},Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" Margin="10,0,0,14" FontSize="28"/>
-            <TextBlock HorizontalAlignment="Left" Margin="49,66,0,0" TextWrapping="Wrap" Text="B" VerticalAlignment="Top" FontSize="24" Grid.Row="2"/>
-            <Slider x:Name="bSlider" Grid.Column="1" HorizontalAlignment="Left" Margin="10,74,0,0" Grid.Row="2" VerticalAlignment="Top" Width="198" TickPlacement="TopLeft"
-                    Minimum="0" Maximum="255" ValueChanged="bSlider_ValueChanged"/>
-            <TextBox x:Name="bValue" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="53"
-                     Text="{Binding ElementName=bSlider,StringFormat={}{0:0},Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" Margin="10,0,0,14" FontSize="28"/>
+            <TextBlock Margin="42,61,10,25" TextWrapping="Wrap" Text="R" FontSize="24" RenderTransformOrigin="-0.214,0.406"/>
+            <Slider x:Name="rSlider" Grid.Column="1" VerticalAlignment="Bottom" Height="42" TickPlacement="TopLeft"
+                    Minimum="0" Maximum="255" Margin="4,0,63,10" ValueChanged="Slider_ValueChanged" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="rValue" Grid.Column="2" TextWrapping="Wrap" VerticalAlignment="Bottom"
+                     Text="{Binding ElementName=rSlider,StringFormat={}{0:0},Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" Margin="3,0,10,15" FontSize="28"/>
+            <TextBlock Margin="40,66,10,19" TextWrapping="Wrap" Text="G" FontSize="24" Grid.Row="1"/>
+            <Slider x:Name="gSlider" Grid.Column="1" Margin="4,74,63,19" Grid.Row="1" TickPlacement="TopLeft"
+                    Minimum="0" Maximum="255" ValueChanged="Slider_ValueChanged" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="gValue" Grid.Column="2" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Bottom"
+                     Text="{Binding ElementName=gSlider,StringFormat={}{0:0},Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" Margin="3,0,10,14" FontSize="28"/>
+            <TextBlock Margin="42,66,10,19" TextWrapping="Wrap" Text="B" FontSize="24" Grid.Row="2"/>
+            <Slider x:Name="bSlider" Grid.Column="1" Margin="2,74,65,19" Grid.Row="2" TickPlacement="TopLeft"
+                    Minimum="0" Maximum="255" ValueChanged="Slider_ValueChanged" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="bValue" Grid.Column="2" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Bottom"
+                     Text="{Binding ElementName=bSlider,StringFormat={}{0:0},Path=Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="42" Margin="3,0,10,19" FontSize="28"/>
+            <ComboBox x:Name="cbColorList"  ItemsSource="{Binding}" SelectedValue="{Binding Color}" Grid.Column="1" Margin="10,24,10,57" Grid.Row="3" SelectionChanged="cbColorList_SelectionChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Border Width="20" Height="Auto" Margin="5,0" BorderThickness="1" BorderBrush="Black"  >
+                                <Border.Background>
+                                    <SolidColorBrush Color="{Binding Color}"/>
+                                </Border.Background>
+                            </Border>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+        </Grid>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="stockButton" Content="STOCK" Margin="15,16,10,15" Height="50" FontSize="24" Click="stockButton_Click"/>
+            <ListBox x:Name="stockList" Margin="15,16,10,15" Grid.Row="1" Height="350" SelectionChanged="stockList_SelectionChanged"/>
         </Grid>
     </Grid>
 </Window>
