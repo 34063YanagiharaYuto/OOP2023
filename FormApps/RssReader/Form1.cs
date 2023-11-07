@@ -16,13 +16,20 @@ namespace RssReader {
         public Form1() {
             InitializeComponent();
         }
+        List<string> topics = new List<string> {
+                @"https://news.yahoo.co.jp/rss/topics/top-picks.xml",
+                @"https://news.yahoo.co.jp/rss/topics/domestic.xml",
+                @"https://news.yahoo.co.jp/rss/topics/world.xml",
+                @"https://news.yahoo.co.jp/rss/topics/business.xml",
+                @"https://news.yahoo.co.jp/rss/topics/entertainment.xml",
+                @"https://news.yahoo.co.jp/rss/topics/sports.xml",
+                @"https://news.yahoo.co.jp/rss/topics/it.xml",
+                @"https://news.yahoo.co.jp/rss/topics/science.xml",
+                @"https://news.yahoo.co.jp/rss/topics/local.xml",
+            };
         
         private void Form1_Load(object sender, EventArgs e) {
-            cbMainRss.Items.Add(@"https://news.yahoo.co.jp/rss/topics/local.xml");
-            cbMainRss.Items.Add(@"https://news.yahoo.co.jp/rss/topics/domestic.xml");
-            cbMainRss.Items.Add(@"https://news.yahoo.co.jp/rss/topics/entertainment.xml");
-            cbMainRss.Items.Add(@"https://news.yahoo.co.jp/rss/topics/it.xml");
-            cbMainRss.Items.Add(@"https://news.yahoo.co.jp/rss/topics/science.xml");
+            
         }
 
         private void btGet_Click(object sender, EventArgs e) {
@@ -37,7 +44,7 @@ namespace RssReader {
                 nodes = xdoc.Root.Descendants("item")
                                         .Select(x => new ItemData {
                                             Title = x.Element("title").Value,
-                                            Link = (x.Element("link").Value),
+                                            Link = x.Element("link").Value,
                                         }).ToList();
 
                 // 一度表に入っているものを削除
@@ -62,13 +69,16 @@ namespace RssReader {
             wbBrowser.Url = new Uri(nodes[lbRssTitle.SelectedIndex].Link);
         }
 
-        private void cbMainRss_Click(object sender, EventArgs e) {
-            var a = cbMainRss.SelectedItem;
+        private void btAddUrl_Click(object sender, EventArgs e) {
 
         }
 
-        private void btAddUrl_Click(object sender, EventArgs e) {
-
+        private void rb_CheckedChanged(object sender, EventArgs e) {
+            foreach (RadioButton item in gbButon.Controls) {
+                if (item.Checked) {
+                    tbUrl.Text = topics[int.Parse(item.Tag.ToString())];
+                }
+            }
         }
     }
 }
