@@ -27,17 +27,15 @@ namespace RssReader {
                 @"https://news.yahoo.co.jp/rss/topics/science.xml",
                 @"https://news.yahoo.co.jp/rss/topics/local.xml",
             };
-        
+
         private void Form1_Load(object sender, EventArgs e) {
-            
+
         }
 
         private void btGet_Click(object sender, EventArgs e) {
-            if(tbUrl.Text == "") {
-                return;
-            }
-            else {
-                using (var wc = new WebClient()) {
+            if (tbUrl.Text == "") return;
+            
+            using (var wc = new WebClient()) {
                 var url = wc.OpenRead(tbUrl.Text);
                 XDocument xdoc = XDocument.Load(url);
 
@@ -56,21 +54,38 @@ namespace RssReader {
                 foreach (var node in nodes) {
                     lbRssTitle.Items.Add(node.Title);
                 }
-            }
 
             }
-            
+
         }
 
         private void lbRssTitle_Click(object sender, EventArgs e) {
-            if(lbRssTitle.SelectedIndex == -1) {
+            if (lbRssTitle.SelectedIndex == -1) {
                 return;
             }
             wbBrowser.Url = new Uri(nodes[lbRssTitle.SelectedIndex].Link);
         }
 
         private void btAddUrl_Click(object sender, EventArgs e) {
+            if (tbUrl.Text == "") return;
+            if (tbUrlName.Text == "") return;
 
+            var addurls = new ItemData {
+                Title = tbUrlName.Text,
+                Link = tbUrl.Text
+            };
+
+            if (!cbSaveLink.Items.Contains(addurls.Title)) {
+                if (!cbSaveLink.Text.Contains(addurls.Link)) {
+                    cbSaveLink.Items.Add(addurls.Title);
+                    tbUrl.Clear();
+                    tbUrlName.Clear();
+                }
+            }
+            else {
+                return;
+            }
+            
         }
 
         private void rb_CheckedChanged(object sender, EventArgs e) {

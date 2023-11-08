@@ -39,8 +39,8 @@ namespace RssReader {
             this.rb1 = new System.Windows.Forms.RadioButton();
             this.rb2 = new System.Windows.Forms.RadioButton();
             this.rb3 = new System.Windows.Forms.RadioButton();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cbSaveLink = new System.Windows.Forms.ComboBox();
+            this.tbUrlName = new System.Windows.Forms.TextBox();
             this.gbButon.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -122,7 +122,7 @@ namespace RssReader {
             this.gbButon.Controls.Add(this.rb);
             this.gbButon.Location = new System.Drawing.Point(12, 105);
             this.gbButon.Name = "gbButon";
-            this.gbButon.Size = new System.Drawing.Size(227, 157);
+            this.gbButon.Size = new System.Drawing.Size(227, 151);
             this.gbButon.TabIndex = 8;
             this.gbButon.TabStop = false;
             this.gbButon.Text = "groupBox1";
@@ -239,22 +239,22 @@ namespace RssReader {
             this.rb3.UseVisualStyleBackColor = true;
             this.rb3.CheckedChanged += new System.EventHandler(this.rb_CheckedChanged);
             // 
-            // comboBox1
+            // cbSaveLink
             // 
-            this.comboBox1.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 59);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(427, 32);
-            this.comboBox1.TabIndex = 9;
+            this.cbSaveLink.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.cbSaveLink.FormattingEnabled = true;
+            this.cbSaveLink.Location = new System.Drawing.Point(12, 59);
+            this.cbSaveLink.Name = "cbSaveLink";
+            this.cbSaveLink.Size = new System.Drawing.Size(427, 32);
+            this.cbSaveLink.TabIndex = 9;
             // 
-            // textBox1
+            // tbUrlName
             // 
-            this.textBox1.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.textBox1.Location = new System.Drawing.Point(445, 60);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(388, 31);
-            this.textBox1.TabIndex = 10;
+            this.tbUrlName.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.tbUrlName.Location = new System.Drawing.Point(445, 60);
+            this.tbUrlName.Name = "tbUrlName";
+            this.tbUrlName.Size = new System.Drawing.Size(388, 31);
+            this.tbUrlName.TabIndex = 10;
             // 
             // Form1
             // 
@@ -262,8 +262,8 @@ namespace RssReader {
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Aqua;
             this.ClientSize = new System.Drawing.Size(941, 673);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.tbUrlName);
+            this.Controls.Add(this.cbSaveLink);
             this.Controls.Add(this.gbButon);
             this.Controls.Add(this.btAddUrl);
             this.Controls.Add(this.wbBrowser);
@@ -297,8 +297,8 @@ namespace RssReader {
         private System.Windows.Forms.RadioButton rb8;
         private System.Windows.Forms.RadioButton rb4;
         private System.Windows.Forms.RadioButton rb5;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox cbSaveLink;
+        private System.Windows.Forms.TextBox tbUrlName;
     }
 }
 
