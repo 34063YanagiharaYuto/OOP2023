@@ -11,9 +11,9 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 
 namespace RssReader {
-    public partial class Form1 : Form {
+    public partial class fmRssReaderWindow : Form {
         List<ItemData> nodes;
-        public Form1() {
+        public fmRssReaderWindow() {
             InitializeComponent();
         }
         List<string> topics = new List<string> {
@@ -28,35 +28,35 @@ namespace RssReader {
                 @"https://news.yahoo.co.jp/rss/topics/local.xml",
             };
 
-        private void Form1_Load(object sender, EventArgs e) {
-
-        }
-
         private void btGet_Click(object sender, EventArgs e) {
             if (tbUrl.Text == "") return;
-            
-            using (var wc = new WebClient()) {
-                var url = wc.OpenRead(tbUrl.Text);
-                XDocument xdoc = XDocument.Load(url);
+            try {
+                using (var wc = new WebClient()) {
+                    var url = wc.OpenRead(tbUrl.Text);
+                    XDocument xdoc = XDocument.Load(url);
+    
+                    nodes = xdoc.Root.Descendants("item")
+                                            .Select(x => new ItemData {
+                                                Title = x.Element("title").Value,
+                                                Link = x.Element("link").Value,
+                                            }).ToList();
 
-                nodes = xdoc.Root.Descendants("item")
-                                        .Select(x => new ItemData {
-                                            Title = x.Element("title").Value,
-                                            Link = x.Element("link").Value,
-                                        }).ToList();
+                    // 一度表に入っているものを削除
+                    if (lbRssTitle.Items.Count > 1) {
+                        lbRssTitle.Items.Clear();
+                    }
 
-                // 一度表に入っているものを削除
-                if (lbRssTitle.Items.Count > 1) {
-                    lbRssTitle.Items.Clear();
+                    // 表に追加
+                    foreach (var node in nodes) {
+                        lbRssTitle.Items.Add(node.Title);
+                    }
+
                 }
-
-                // 表に追加
-                foreach (var node in nodes) {
-                    lbRssTitle.Items.Add(node.Title);
-                }
-
             }
-
+            catch {
+                MessageBox.Show("予期せぬエラーが発生しました。");
+                tbUrl.Text = "";
+            }
         }
 
         private void lbRssTitle_Click(object sender, EventArgs e) {
@@ -76,8 +76,8 @@ namespace RssReader {
             };
 
             if (!cbSaveLink.Items.Contains(addurls.Title)) {
-                if (!cbSaveLink.Text.Contains(addurls.Link)) {
-                    cbSaveLink.Items.Add(addurls.Title);
+                if (!cbSaveLink.Items.Contains(addurls.Link)) {
+                    cbSaveLink.Items.Add(addurls);
                     tbUrl.Clear();
                     tbUrlName.Clear();
                 }
@@ -85,7 +85,7 @@ namespace RssReader {
             else {
                 return;
             }
-            
+
         }
 
         private void rb_CheckedChanged(object sender, EventArgs e) {
@@ -93,7 +93,16 @@ namespace RssReader {
                 if (item.Checked) {
                     tbUrl.Text = topics[int.Parse(item.Tag.ToString())];
                 }
+                cbSaveLink.Text = "";
             }
+        }
+
+        private void cbSaveLink_TextChanged(object sender, EventArgs e) {
+            if (cbSaveLink.Items.Count == 0) {
+                return;
+            }
+            var cburl = (ItemData)((ComboBox)sender).SelectedItem;
+            tbUrl.Text = cburl.Link;
         }
     }
 }

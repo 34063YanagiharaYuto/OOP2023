@@ -1,6 +1,6 @@
 ﻿
 namespace RssReader {
-    partial class Form1 {
+    partial class fmRssReaderWindow {
         /// <summary>
         /// 必要なデザイナー変数です。
         /// </summary>
@@ -125,7 +125,7 @@ namespace RssReader {
             this.gbButon.Size = new System.Drawing.Size(227, 151);
             this.gbButon.TabIndex = 8;
             this.gbButon.TabStop = false;
-            this.gbButon.Text = "groupBox1";
+            this.gbButon.Text = "ジャンル一覧";
             // 
             // rb6
             // 
@@ -247,6 +247,7 @@ namespace RssReader {
             this.cbSaveLink.Name = "cbSaveLink";
             this.cbSaveLink.Size = new System.Drawing.Size(427, 32);
             this.cbSaveLink.TabIndex = 9;
+            this.cbSaveLink.TextChanged += new System.EventHandler(this.cbSaveLink_TextChanged);
             // 
             // tbUrlName
             // 
@@ -256,12 +257,12 @@ namespace RssReader {
             this.tbUrlName.Size = new System.Drawing.Size(388, 31);
             this.tbUrlName.TabIndex = 10;
             // 
-            // Form1
+            // fmRssReaderWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Aqua;
-            this.ClientSize = new System.Drawing.Size(941, 673);
+            this.BackColor = System.Drawing.Color.Azure;
+            this.ClientSize = new System.Drawing.Size(948, 673);
             this.Controls.Add(this.tbUrlName);
             this.Controls.Add(this.cbSaveLink);
             this.Controls.Add(this.gbButon);
@@ -270,9 +271,8 @@ namespace RssReader {
             this.Controls.Add(this.lbRssTitle);
             this.Controls.Add(this.btGet);
             this.Controls.Add(this.tbUrl);
-            this.Name = "Form1";
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Name = "fmRssReaderWindow";
+            this.Text = "RssReader";
             this.gbButon.ResumeLayout(false);
             this.gbButon.PerformLayout();
             this.ResumeLayout(false);

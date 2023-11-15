@@ -18,11 +18,19 @@
                      Text="{Binding MetricValue, StringFormat={}{0:N3}}"/>
             <ComboBox Width="80" Margin="4" ItemsSource="{Binding Source={x:Static SampleUnitConverter:MetricUnit.Units}}"
                       SelectedItem="{Binding CurrentMetricUnit}"/>
+            
+            <TextBox Width="100" Margin="4"
+                     Text="{Binding YardValue, StringFormat={}{0:N3}}"/>
+            <ComboBox Width="80" Margin="4" ItemsSource="{Binding Source={x:Static SampleUnitConverter:YardUnit.Units}}"
+                      SelectedItem="{Binding CurrentYardUnit}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Width="40" Margin="4" Content="▲" Command="{Binding ImperialUnitToMetric}"/>
             <Button Width="40" Margin="4" Content="▼" Command="{Binding MetricToImperialUnit}"/>
+
+            <Button Width="40" Margin="4" Content="▲" Command="{Binding YardUnidToPond}"/>
+            <Button Width="40" Margin="4" Content="▼" Command="{Binding PondToYardUnit}"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal">
@@ -30,6 +38,11 @@
                      Text="{Binding ImperialValue, StringFormat={}{0:N3}}"/>
             <ComboBox Width="80" Margin="4" ItemsSource="{Binding Source={x:Static SampleUnitConverter:ImperialUnit.Units}}"
                       SelectedItem="{Binding CurrentImperialUnit}"/>
+
+            <TextBox Width="100" Margin="4"
+                     Text="{Binding PondValue, StringFormat={}{0:N3}}"/>
+            <ComboBox Width="80" Margin="4" ItemsSource="{Binding Source={x:Static SampleUnitConverter:PondUnit.Units}}"
+                      SelectedItem="{Binding CurrentPondUnit}"/>
         </StackPanel>
 
     </StackPanel>
