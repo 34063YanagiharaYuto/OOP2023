@@ -16,7 +16,7 @@ namespace RssReader {
         public fmRssReaderWindow() {
             InitializeComponent();
         }
-        List<string> topics = new List<string> {
+        List<string> UrlTopics = new List<string> {
                 @"https://news.yahoo.co.jp/rss/topics/top-picks.xml",
                 @"https://news.yahoo.co.jp/rss/topics/domestic.xml",
                 @"https://news.yahoo.co.jp/rss/topics/world.xml",
@@ -49,20 +49,20 @@ namespace RssReader {
                     // 表に追加
                     foreach (var node in nodes) {
                         lbRssTitle.Items.Add(node.Title);
+                        wbBrowser.Url = null;
                     }
 
                 }
             }
             catch {
-                MessageBox.Show("予期せぬエラーが発生しました。");
+                MessageBox.Show("<<予期せぬエラーが発生しました。>>");
                 tbUrl.Text = "";
             }
         }
 
         private void lbRssTitle_Click(object sender, EventArgs e) {
-            if (lbRssTitle.SelectedIndex == -1) {
-                return;
-            }
+            if (lbRssTitle.SelectedIndex == -1) return;
+            
             wbBrowser.Url = new Uri(nodes[lbRssTitle.SelectedIndex].Link);
         }
 
@@ -85,13 +85,12 @@ namespace RssReader {
             else {
                 return;
             }
-
         }
 
         private void rb_CheckedChanged(object sender, EventArgs e) {
             foreach (RadioButton item in gbButon.Controls) {
                 if (item.Checked) {
-                    tbUrl.Text = topics[int.Parse(item.Tag.ToString())];
+                    tbUrl.Text = UrlTopics[int.Parse(item.Tag.ToString())];
                 }
                 cbSaveLink.Text = "";
             }

@@ -23,7 +23,6 @@ namespace ColorChecker {
             InitializeComponent();
             DataContext = GetColorList();
         }
-        
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) {
             byte r = (byte)rSlider.Value;
@@ -33,19 +32,18 @@ namespace ColorChecker {
         }
 
         private void stockButton_Click(object sender, RoutedEventArgs e) {
-            var color = Color.FromRgb((byte)rSlider.Value,(byte)gSlider.Value,(byte)bSlider.Value);
+            var color = Color.FromRgb((byte)rSlider.Value, (byte)gSlider.Value, (byte)bSlider.Value);
             var name = GetColorList().FirstOrDefault(f => f.Color == color)?.Name;
             MyColor colors = new MyColor {
                 Name = name,
                 Color = color
             };
-            if(stockList.Items.Contains(DataContext)) {
+            if (stockList.Items.Contains(DataContext)) {
                 stockList.Items.Add(colors.Name);
-            }else if (!stockList.Items.Contains(colors)) {
+            }
+            else {
                 stockList.Items.Add(colors);
             }
-            
-                
         }
 
         private void cbColorList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
@@ -76,10 +74,7 @@ namespace ColorChecker {
         public string Name { get; set; }
 
         public override string ToString() {
-            return Name ?? " R: " + Color.R + " G: " + Color.G +  " B: " + Color.B;
+            return Name ?? " R: " + Color.R + " G: " + Color.G + " B: " + Color.B;
         }
     }
-    
-
-    
 }
