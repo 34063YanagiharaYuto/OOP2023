@@ -120,6 +120,7 @@ namespace RssReader {
             this.gbButon.Controls.Add(this.rb2);
             this.gbButon.Controls.Add(this.rb3);
             this.gbButon.Controls.Add(this.rb);
+            this.gbButon.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.gbButon.Location = new System.Drawing.Point(12, 105);
             this.gbButon.Name = "gbButon";
             this.gbButon.Size = new System.Drawing.Size(227, 151);
@@ -271,8 +272,11 @@ namespace RssReader {
             this.Controls.Add(this.lbRssTitle);
             this.Controls.Add(this.btGet);
             this.Controls.Add(this.tbUrl);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "fmRssReaderWindow";
             this.Text = "RssReader";
+            this.Load += new System.EventHandler(this.fmRssReaderWindow_Load);
             this.gbButon.ResumeLayout(false);
             this.gbButon.PerformLayout();
             this.ResumeLayout(false);
