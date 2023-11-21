@@ -107,6 +107,7 @@ namespace RssReader {
         private void fmRssReaderWindow_Load(object sender, EventArgs e) {
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
+            rb.Checked = true;
         }
     }
 }

@@ -41,21 +41,23 @@ namespace RssReader {
             this.rb3 = new System.Windows.Forms.RadioButton();
             this.cbSaveLink = new System.Windows.Forms.ComboBox();
             this.tbUrlName = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.gbButon.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbUrl
             // 
             this.tbUrl.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbUrl.Location = new System.Drawing.Point(12, 12);
+            this.tbUrl.Location = new System.Drawing.Point(67, 12);
             this.tbUrl.Name = "tbUrl";
-            this.tbUrl.Size = new System.Drawing.Size(821, 31);
+            this.tbUrl.Size = new System.Drawing.Size(815, 31);
             this.tbUrl.TabIndex = 0;
             // 
             // btGet
             // 
             this.btGet.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btGet.Location = new System.Drawing.Point(839, 12);
+            this.btGet.Location = new System.Drawing.Point(888, 12);
             this.btGet.Name = "btGet";
             this.btGet.Size = new System.Drawing.Size(95, 31);
             this.btGet.TabIndex = 1;
@@ -68,9 +70,9 @@ namespace RssReader {
             this.lbRssTitle.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.lbRssTitle.FormattingEnabled = true;
             this.lbRssTitle.ItemHeight = 15;
-            this.lbRssTitle.Location = new System.Drawing.Point(245, 102);
+            this.lbRssTitle.Location = new System.Drawing.Point(296, 102);
             this.lbRssTitle.Name = "lbRssTitle";
-            this.lbRssTitle.Size = new System.Drawing.Size(689, 154);
+            this.lbRssTitle.Size = new System.Drawing.Size(687, 154);
             this.lbRssTitle.TabIndex = 2;
             this.lbRssTitle.Click += new System.EventHandler(this.lbRssTitle_Click);
             // 
@@ -80,13 +82,13 @@ namespace RssReader {
             this.wbBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.wbBrowser.Name = "wbBrowser";
             this.wbBrowser.ScriptErrorsSuppressed = true;
-            this.wbBrowser.Size = new System.Drawing.Size(922, 393);
+            this.wbBrowser.Size = new System.Drawing.Size(971, 393);
             this.wbBrowser.TabIndex = 3;
             // 
             // btAddUrl
             // 
             this.btAddUrl.Font = new System.Drawing.Font("MS UI Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.btAddUrl.Location = new System.Drawing.Point(839, 59);
+            this.btAddUrl.Location = new System.Drawing.Point(888, 59);
             this.btAddUrl.Name = "btAddUrl";
             this.btAddUrl.Size = new System.Drawing.Size(95, 31);
             this.btAddUrl.TabIndex = 5;
@@ -123,7 +125,7 @@ namespace RssReader {
             this.gbButon.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.gbButon.Location = new System.Drawing.Point(12, 105);
             this.gbButon.Name = "gbButon";
-            this.gbButon.Size = new System.Drawing.Size(227, 151);
+            this.gbButon.Size = new System.Drawing.Size(278, 151);
             this.gbButon.TabIndex = 8;
             this.gbButon.TabStop = false;
             this.gbButon.Text = "ジャンル一覧";
@@ -146,7 +148,7 @@ namespace RssReader {
             // 
             this.rb7.AutoSize = true;
             this.rb7.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.rb7.Location = new System.Drawing.Point(78, 121);
+            this.rb7.Location = new System.Drawing.Point(93, 121);
             this.rb7.Name = "rb7";
             this.rb7.Size = new System.Drawing.Size(57, 19);
             this.rb7.TabIndex = 14;
@@ -160,7 +162,7 @@ namespace RssReader {
             // 
             this.rb8.AutoSize = true;
             this.rb8.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.rb8.Location = new System.Drawing.Point(149, 121);
+            this.rb8.Location = new System.Drawing.Point(197, 121);
             this.rb8.Name = "rb8";
             this.rb8.Size = new System.Drawing.Size(57, 19);
             this.rb8.TabIndex = 13;
@@ -174,7 +176,7 @@ namespace RssReader {
             // 
             this.rb4.AutoSize = true;
             this.rb4.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.rb4.Location = new System.Drawing.Point(78, 69);
+            this.rb4.Location = new System.Drawing.Point(93, 69);
             this.rb4.Name = "rb4";
             this.rb4.Size = new System.Drawing.Size(71, 19);
             this.rb4.TabIndex = 12;
@@ -188,7 +190,7 @@ namespace RssReader {
             // 
             this.rb5.AutoSize = true;
             this.rb5.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.rb5.Location = new System.Drawing.Point(149, 69);
+            this.rb5.Location = new System.Drawing.Point(197, 69);
             this.rb5.Name = "rb5";
             this.rb5.Size = new System.Drawing.Size(75, 19);
             this.rb5.TabIndex = 11;
@@ -202,7 +204,7 @@ namespace RssReader {
             // 
             this.rb1.AutoSize = true;
             this.rb1.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.rb1.Location = new System.Drawing.Point(78, 17);
+            this.rb1.Location = new System.Drawing.Point(93, 17);
             this.rb1.Name = "rb1";
             this.rb1.Size = new System.Drawing.Size(57, 19);
             this.rb1.TabIndex = 10;
@@ -216,7 +218,7 @@ namespace RssReader {
             // 
             this.rb2.AutoSize = true;
             this.rb2.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.rb2.Location = new System.Drawing.Point(149, 17);
+            this.rb2.Location = new System.Drawing.Point(197, 17);
             this.rb2.Name = "rb2";
             this.rb2.Size = new System.Drawing.Size(57, 19);
             this.rb2.TabIndex = 9;
@@ -244,26 +246,48 @@ namespace RssReader {
             // 
             this.cbSaveLink.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.cbSaveLink.FormattingEnabled = true;
-            this.cbSaveLink.Location = new System.Drawing.Point(12, 59);
+            this.cbSaveLink.Location = new System.Drawing.Point(154, 59);
             this.cbSaveLink.Name = "cbSaveLink";
-            this.cbSaveLink.Size = new System.Drawing.Size(427, 32);
+            this.cbSaveLink.Size = new System.Drawing.Size(351, 32);
             this.cbSaveLink.TabIndex = 9;
             this.cbSaveLink.TextChanged += new System.EventHandler(this.cbSaveLink_TextChanged);
             // 
             // tbUrlName
             // 
             this.tbUrlName.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbUrlName.Location = new System.Drawing.Point(445, 60);
+            this.tbUrlName.Location = new System.Drawing.Point(511, 60);
             this.tbUrlName.Name = "tbUrlName";
-            this.tbUrlName.Size = new System.Drawing.Size(388, 31);
+            this.tbUrlName.Size = new System.Drawing.Size(371, 31);
             this.tbUrlName.TabIndex = 10;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label1.Location = new System.Drawing.Point(9, 67);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(139, 15);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "＊お気に入り一覧＊";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label2.Location = new System.Drawing.Point(15, 20);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(46, 15);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "URL：";
             // 
             // fmRssReaderWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(948, 673);
+            this.ClientSize = new System.Drawing.Size(995, 673);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.tbUrlName);
             this.Controls.Add(this.cbSaveLink);
             this.Controls.Add(this.gbButon);
@@ -303,6 +327,8 @@ namespace RssReader {
         private System.Windows.Forms.RadioButton rb5;
         private System.Windows.Forms.ComboBox cbSaveLink;
         private System.Windows.Forms.TextBox tbUrlName;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }
 
