@@ -43,6 +43,7 @@ namespace RssReader {
             this.tbUrlName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.gbButon.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -248,16 +249,16 @@ namespace RssReader {
             this.cbSaveLink.FormattingEnabled = true;
             this.cbSaveLink.Location = new System.Drawing.Point(154, 59);
             this.cbSaveLink.Name = "cbSaveLink";
-            this.cbSaveLink.Size = new System.Drawing.Size(351, 32);
+            this.cbSaveLink.Size = new System.Drawing.Size(312, 32);
             this.cbSaveLink.TabIndex = 9;
             this.cbSaveLink.TextChanged += new System.EventHandler(this.cbSaveLink_TextChanged);
             // 
             // tbUrlName
             // 
             this.tbUrlName.Font = new System.Drawing.Font("MS UI Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.tbUrlName.Location = new System.Drawing.Point(511, 60);
+            this.tbUrlName.Location = new System.Drawing.Point(540, 60);
             this.tbUrlName.Name = "tbUrlName";
-            this.tbUrlName.Size = new System.Drawing.Size(371, 31);
+            this.tbUrlName.Size = new System.Drawing.Size(342, 31);
             this.tbUrlName.TabIndex = 10;
             // 
             // label1
@@ -280,12 +281,23 @@ namespace RssReader {
             this.label2.TabIndex = 12;
             this.label2.Text = "URL：";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("MS UI Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label3.Location = new System.Drawing.Point(472, 67);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(64, 15);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "登録名：";
+            // 
             // fmRssReaderWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(995, 673);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tbUrlName);
@@ -329,6 +341,7 @@ namespace RssReader {
         private System.Windows.Forms.TextBox tbUrlName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
 

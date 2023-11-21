@@ -67,8 +67,14 @@ namespace RssReader {
         }
 
         private void btAddUrl_Click(object sender, EventArgs e) {
-            if (tbUrl.Text == "") return;
-            if (tbUrlName.Text == "") return;
+            if (tbUrl.Text == "") {
+                MessageBox.Show("エラー：このURLでは、登録できません。");
+                return;
+            }
+            if (tbUrlName.Text == "") {
+                MessageBox.Show("エラー：この名前では、登録できません。");
+                return;
+            }
 
             var addurls = new ItemData {
                 Title = tbUrlName.Text,
@@ -80,6 +86,9 @@ namespace RssReader {
                     cbSaveLink.Items.Add(addurls);
                     tbUrl.Clear();
                     tbUrlName.Clear();
+                }
+                else {
+                    return;
                 }
             }
             else {
